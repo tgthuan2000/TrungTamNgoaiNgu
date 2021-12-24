@@ -56,9 +56,12 @@ namespace TrungTamNgoaiNgu.GUI.QLKhoaThi
             else
             {
                 // query
-                KhoaThi khoaThi = new KhoaThi();
-                khoaThi.TenKhoa = tenKhoaThi;
-                khoaThi.NgayThi = ngayThi;
+                KhoaThi khoaThi = new KhoaThi
+                {
+                    TenKhoa = tenKhoaThi,
+                    NgayThi = ngayThi
+                };
+
                 if (isThem)
                 {
                     if (isSuccess = khoaThiDAL.Them(khoaThi))

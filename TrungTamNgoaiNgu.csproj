@@ -104,6 +104,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TrungTamNgoaiNguEntities.edmx</DependentUpon>
     </Compile>
+    <Compile Include="BIZ\_GiaoVien.cs" />
     <Compile Include="BIZ\_NguoiDung.cs" />
     <Compile Include="BIZ\_TrinhDo.cs" />
     <Compile Include="BIZ\_PhongThi.cs" />

@@ -36,9 +36,11 @@ namespace TrungTamNgoaiNgu.GUI.QLKhoaThi
             }
             else
             {
-                GiaoVien giaoVien = new GiaoVien();
-                giaoVien.HoGiaoVien = ho;
-                giaoVien.TenGiaoVien = ten;
+                GiaoVien giaoVien = new GiaoVien
+                {
+                    HoGiaoVien = ho,
+                    TenGiaoVien = ten
+                };
 
                 if (new KhoaThiDAL().ThemGiaoVien(giaoVien))
                 {

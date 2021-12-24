@@ -49,10 +49,12 @@ namespace TrungTamNgoaiNgu.GUI.QLNguoiDung
             else
             {
                 // query
-                DuThi duThi = new DuThi();
-                duThi.CCCD = nguoiDung.CCCD;
-                duThi.MaKhoaThi = maKhoaThi;
-                duThi.MaTrinhDo = trinhDo;
+                DuThi duThi = new DuThi
+                {
+                    CCCD = nguoiDung.CCCD,
+                    MaKhoaThi = maKhoaThi,
+                    MaTrinhDo = trinhDo
+                };
 
                 if (nguoiDungDAL.DangKyDuThi(duThi))
                     MessageBox.Show("Đăng ký dự thi thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);

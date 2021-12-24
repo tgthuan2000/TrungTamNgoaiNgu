@@ -105,17 +105,19 @@ namespace TrungTamNgoaiNgu.GUI.QLNguoiDung
             else
             {
                 // query
-                NguoiDung nguoiDung = new NguoiDung();
-                nguoiDung.CCCD = CCCD;
-                nguoiDung.NoiCap = noiCap;
-                nguoiDung.NgayCap = ngayCap;
-                nguoiDung.HoNguoiDung = ho;
-                nguoiDung.TenNguoiDung = ten;
-                nguoiDung.SoDienThoai = SDT;
-                nguoiDung.GioiTinh = gioiTinh;
-                nguoiDung.Email = email;
-                nguoiDung.NgaySinh = ngaySinh;
-                nguoiDung.NoiSinh = noiSinh;
+                NguoiDung nguoiDung = new NguoiDung
+                {
+                    CCCD = CCCD,
+                    NoiCap = noiCap,
+                    NgayCap = ngayCap,
+                    HoNguoiDung = ho,
+                    TenNguoiDung = ten,
+                    SoDienThoai = SDT,
+                    GioiTinh = gioiTinh,
+                    Email = email,
+                    NgaySinh = ngaySinh,
+                    NoiSinh = noiSinh
+                };
 
                 if (isThem)
                 {
