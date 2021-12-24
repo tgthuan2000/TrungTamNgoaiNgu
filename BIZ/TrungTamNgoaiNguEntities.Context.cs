@@ -25,6 +25,8 @@ namespace TrungTamNgoaiNgu.BIZ
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<DuThi> DuThis { get; set; }
+        public virtual DbSet<GiamThi> GiamThis { get; set; }
         public virtual DbSet<GiaoVien> GiaoViens { get; set; }
         public virtual DbSet<KhoaThi> KhoaThis { get; set; }
         public virtual DbSet<NguoiDung> NguoiDungs { get; set; }

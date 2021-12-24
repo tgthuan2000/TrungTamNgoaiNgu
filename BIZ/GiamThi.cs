@@ -12,19 +12,13 @@ namespace TrungTamNgoaiNgu.BIZ
     using System;
     using System.Collections.Generic;
     
-    public partial class GiaoVien
+    public partial class GiamThi
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public GiaoVien()
-        {
-            this.GiamThis = new HashSet<GiamThi>();
-        }
-    
+        public int MaPhong { get; set; }
         public int MaGiaoVien { get; set; }
-        public string HoGiaoVien { get; set; }
-        public string TenGiaoVien { get; set; }
+        public string NhiemVu { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GiamThi> GiamThis { get; set; }
+        public virtual GiaoVien GiaoVien { get; set; }
+        public virtual PhongThi PhongThi { get; set; }
     }
 }

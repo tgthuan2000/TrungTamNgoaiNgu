@@ -4,8 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using TrungTamNgoaiNgu.GUI.QLKhoaThi;
-using TrungTamNgoaiNgu.GUI.QLPhongThi;
-using TrungTamNgoaiNgu.GUI.QLThiSinh;
+using TrungTamNgoaiNgu.GUI.QLNguoiDung;
 
 namespace TrungTamNgoaiNgu.GUI
 {
@@ -14,6 +13,10 @@ namespace TrungTamNgoaiNgu.GUI
         public FMain()
         {
             InitializeComponent();
+        }
+
+        private void FMain_Load(object sender, EventArgs e)
+        {
             GetPage(new FKhoaThi());
         }
 
@@ -36,6 +39,7 @@ namespace TrungTamNgoaiNgu.GUI
             pnlContent.Controls.Add(F);
         }
 
+        #region static set
         //
         // setVisibleColDataGridView
         //
@@ -508,7 +512,7 @@ namespace TrungTamNgoaiNgu.GUI
             }
         }
 
-
+        #endregion
 
         //
         //  public - closed
@@ -523,14 +527,13 @@ namespace TrungTamNgoaiNgu.GUI
             }
         }
 
+        #region Style
         private void resetStyles()
         {
             btnQLKhoaThi.BackColor = Color.DodgerBlue;
             btnQLKhoaThi.ForeColor = Color.White;
-            btnQLPhongThi.BackColor = Color.DodgerBlue;
-            btnQLPhongThi.ForeColor = Color.White;
-            btnQLThiSinh.BackColor = Color.DodgerBlue;
-            btnQLThiSinh.ForeColor = Color.White;
+            btnQLNguoiDung.BackColor = Color.DodgerBlue;
+            btnQLNguoiDung.ForeColor = Color.White;
         }
 
         private void btnQLKhoaThi_Click(object sender, EventArgs e)
@@ -541,20 +544,15 @@ namespace TrungTamNgoaiNgu.GUI
             GetPage(new FKhoaThi());
         }
 
-        private void btnQLPhongThi_Click(object sender, EventArgs e)
+        private void btnQLNguoiDung_Click(object sender, EventArgs e)
         {
             resetStyles();
-            btnQLPhongThi.BackColor = Color.White;
-            btnQLPhongThi.ForeColor = Color.DodgerBlue;
-            GetPage(new FPhongThi());
+            btnQLNguoiDung.BackColor = Color.White;
+            btnQLNguoiDung.ForeColor = Color.DodgerBlue;
+            GetPage(new FNguoiDung());
         }
+        #endregion
 
-        private void btnQLThiSinh_Click(object sender, EventArgs e)
-        {
-            resetStyles();
-            btnQLThiSinh.BackColor = Color.White;
-            btnQLThiSinh.ForeColor = Color.DodgerBlue;
-            GetPage(new FThiSinh());
-        }
+
     }
 }

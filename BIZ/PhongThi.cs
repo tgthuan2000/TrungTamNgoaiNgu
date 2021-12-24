@@ -17,23 +17,24 @@ namespace TrungTamNgoaiNgu.BIZ
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PhongThi()
         {
+            this.GiamThis = new HashSet<GiamThi>();
             this.ThiSinhs = new HashSet<ThiSinh>();
             this.ThiSinhs1 = new HashSet<ThiSinh>();
-            this.GiaoViens = new HashSet<GiaoVien>();
         }
     
         public int MaPhong { get; set; }
         public string TenPhong { get; set; }
         public int MaKhoaThi { get; set; }
         public int MaTrinhDo { get; set; }
+        public bool ChotSo { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<GiamThi> GiamThis { get; set; }
         public virtual KhoaThi KhoaThi { get; set; }
         public virtual TrinhDo TrinhDo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ThiSinh> ThiSinhs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ThiSinh> ThiSinhs1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GiaoVien> GiaoViens { get; set; }
     }
 }

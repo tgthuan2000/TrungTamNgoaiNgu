@@ -40,6 +40,40 @@ namespace TrungTamNgoaiNgu.DAL
 
             return qr.ToList();
         }
+        public List<ThiSinh> DanhSachThiSinh()
+        {
+            db = new TrungTamNgoaiNguEntities();
+            var qr = from ts in db.ThiSinhs
+                     orderby ts.SBD
+                     where ts.MaPhong == phongThi.MaPhong
+                     select ts;
 
+            return qr.ToList();
+        }
+        public List<GiamThi> DanhSachGiamThi()
+        {
+            db = new TrungTamNgoaiNguEntities();
+            var qr = from gt in db.GiamThis
+                     orderby gt.GiaoVien.TenGiaoVien
+                     where gt.MaPhong == phongThi.MaPhong
+                     select gt;
+
+            return qr.ToList();
+        }
+
+        public bool ChotSo()
+        {
+            db = new TrungTamNgoaiNguEntities();
+            var qr = from pt in db.PhongThis
+                     where pt.MaPhong == phongThi.MaPhong
+                     select pt;
+
+            foreach (PhongThi pt in qr)
+            {
+                pt.ChotSo = true;
+            }
+
+            return db.SaveChanges() > 0;
+        }
     }
 }

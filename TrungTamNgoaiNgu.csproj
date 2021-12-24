@@ -62,6 +62,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BIZ\DuThi.cs">
+      <DependentUpon>TrungTamNgoaiNguEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BIZ\GiamThi.cs">
+      <DependentUpon>TrungTamNgoaiNguEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="BIZ\GiaoVien.cs">
       <DependentUpon>TrungTamNgoaiNguEntities.tt</DependentUpon>
     </Compile>
@@ -105,12 +111,6 @@
     <Compile Include="DAL\NguoiDungDAL.cs" />
     <Compile Include="DAL\PhongThiDAL.cs" />
     <Compile Include="DAL\KhoaThiDAL.cs" />
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="GUI\FMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -123,17 +123,53 @@
     <Compile Include="GUI\QLKhoaThi\FKhoaThi.designer.cs">
       <DependentUpon>FKhoaThi.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\QLPhongThi\FPhongThi.cs">
+    <Compile Include="GUI\QLKhoaThi\FThemDuThi.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GUI\QLPhongThi\FPhongThi.designer.cs">
-      <DependentUpon>FPhongThi.cs</DependentUpon>
+    <Compile Include="GUI\QLKhoaThi\FThemDuThi.designer.cs">
+      <DependentUpon>FThemDuThi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\QLKhoaThi\FThemGiaoVien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\QLKhoaThi\FThemGiaoVien.designer.cs">
+      <DependentUpon>FThemGiaoVien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\QLKhoaThi\FThemSuaKhoaThi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\QLKhoaThi\FThemSuaKhoaThi.designer.cs">
+      <DependentUpon>FThemSuaKhoaThi.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\QLNguoiDung\FNguoiDung.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GUI\QLNguoiDung\FNguoiDung.designer.cs">
       <DependentUpon>FNguoiDung.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\QLNguoiDung\FKetQuaThi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\QLNguoiDung\FKetQuaThi.designer.cs">
+      <DependentUpon>FKetQuaThi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\QLNguoiDung\FDangKyDuThi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\QLNguoiDung\FDangKyDuThi.designer.cs">
+      <DependentUpon>FDangKyDuThi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\QLNguoiDung\FThemSuaNguoiDung.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\QLNguoiDung\FThemSuaNguoiDung.designer.cs">
+      <DependentUpon>FThemSuaNguoiDung.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\QLPhongThi\FPhongThi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\QLPhongThi\FPhongThi.designer.cs">
+      <DependentUpon>FPhongThi.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -143,11 +179,29 @@
     <EmbeddedResource Include="GUI\QLKhoaThi\FKhoaThi.resx">
       <DependentUpon>FKhoaThi.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\QLPhongThi\FPhongThi.resx">
-      <DependentUpon>FPhongThi.cs</DependentUpon>
+    <EmbeddedResource Include="GUI\QLKhoaThi\FThemDuThi.resx">
+      <DependentUpon>FThemDuThi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\QLKhoaThi\FThemGiaoVien.resx">
+      <DependentUpon>FThemGiaoVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\QLKhoaThi\FThemSuaKhoaThi.resx">
+      <DependentUpon>FThemSuaKhoaThi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\QLNguoiDung\FNguoiDung.resx">
       <DependentUpon>FNguoiDung.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\QLNguoiDung\FKetQuaThi.resx">
+      <DependentUpon>FKetQuaThi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\QLNguoiDung\FDangKyDuThi.resx">
+      <DependentUpon>FDangKyDuThi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\QLNguoiDung\FThemSuaNguoiDung.resx">
+      <DependentUpon>FThemSuaNguoiDung.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\QLPhongThi\FPhongThi.resx">
+      <DependentUpon>FPhongThi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -193,9 +247,26 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\lock.png" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Resources\close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\next.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\score.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

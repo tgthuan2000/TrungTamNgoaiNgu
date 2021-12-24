@@ -4,20 +4,26 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="cc92b6472ed34e9a9061eff084a36ad5" Name="Diagram1">
-        <EntityTypeShape EntityType="TrungTamNgoaiNguModel.GiaoVien" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="TrungTamNgoaiNguModel.KhoaThi" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="TrungTamNgoaiNguModel.NguoiDung" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="TrungTamNgoaiNguModel.PhongThi" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="TrungTamNgoaiNguModel.sysdiagram" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TrungTamNgoaiNguModel.ThiSinh" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="TrungTamNgoaiNguModel.TrinhDo" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
+      <Diagram DiagramId="8e716923a65546dca88f2d8e9f5c5e02" Name="Diagram1">
+        <EntityTypeShape EntityType="TrungTamNgoaiNguModel.DuThi" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TrungTamNgoaiNguModel.GiamThi" Width="1.5" PointX="8.25" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TrungTamNgoaiNguModel.GiaoVien" Width="1.5" PointX="6" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TrungTamNgoaiNguModel.KhoaThi" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TrungTamNgoaiNguModel.NguoiDung" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TrungTamNgoaiNguModel.PhongThi" Width="1.5" PointX="6" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TrungTamNgoaiNguModel.sysdiagram" Width="1.5" PointX="2.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TrungTamNgoaiNguModel.ThiSinh" Width="1.5" PointX="11.25" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TrungTamNgoaiNguModel.TrinhDo" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
+        <AssociationConnector Association="TrungTamNgoaiNguModel.FK_DuThi_KhoaThi" ManuallyRouted="false" />
+        <AssociationConnector Association="TrungTamNgoaiNguModel.FK_DuThi_NguoiDung" ManuallyRouted="false" />
+        <AssociationConnector Association="TrungTamNgoaiNguModel.FK_DuThi_TrinhDo" ManuallyRouted="false" />
+        <AssociationConnector Association="TrungTamNgoaiNguModel.FK_GiamThi_GiaoVien" ManuallyRouted="false" />
+        <AssociationConnector Association="TrungTamNgoaiNguModel.FK_GiamThi_PhongThi" ManuallyRouted="false" />
         <AssociationConnector Association="TrungTamNgoaiNguModel.FK_PhongThi_KhoaThi" ManuallyRouted="false" />
         <AssociationConnector Association="TrungTamNgoaiNguModel.FK_ThiSinh_NguoiDung" ManuallyRouted="false" />
         <AssociationConnector Association="TrungTamNgoaiNguModel.FK_PhongThi_TrinhDo" ManuallyRouted="false" />
         <AssociationConnector Association="TrungTamNgoaiNguModel.FK_ThiSinh_PhongThi" ManuallyRouted="false" />
         <AssociationConnector Association="TrungTamNgoaiNguModel.FK_ThiSinh_PhongThi1" ManuallyRouted="false" />
-        <AssociationConnector Association="TrungTamNgoaiNguModel.GiamThi" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

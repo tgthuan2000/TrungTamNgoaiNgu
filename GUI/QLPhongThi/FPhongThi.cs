@@ -1,121 +1,109 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 using TrungTamNgoaiNgu.BIZ;
 using TrungTamNgoaiNgu.DAL;
 
-namespace TrungTamNgoaiNgu.GUI.QLPhongThi
+namespace TrungTamNgoaiNgu.GUI.QLKhoaThi
 {
     public partial class FPhongThi : Form
     {
         PhongThiDAL phongThiDAL;
-        List<PhongThi> phongThis;
-        int phongThiIndex;
+        PhongThi phongThi;
+        List<ThiSinh> thiSinhs;
+        List<ThiSinh> thiSinhsTemp;
+        List<GiamThi> giamThis;
 
-        public FPhongThi()
+        public FPhongThi(PhongThi phongThi)
         {
             InitializeComponent();
-
-            phongThiDAL = new PhongThiDAL();
-            phongThis = new List<PhongThi>();
-            phongThiIndex = -1;
-
-            // load data init
-            getPhongThis();
-
-            // style
-            styles();
+            this.phongThi = phongThi;
+            phongThiDAL = new PhongThiDAL(phongThi);
+            thiSinhs = new List<ThiSinh>();
+            thiSinhsTemp = new List<ThiSinh>();
+            giamThis = new List<GiamThi>();
         }
 
-        //
-        // styles
-        //
-        private void styles()
+        private void FPhongThi_Load(object sender, EventArgs e)
         {
-            FMain.setVisibleColDataGridView(dataGridView1, new int[] { });
-            FMain.setSizeColDataGridView(dataGridView1, "");
-            FMain.setHeaderColDataGridView(dataGridView1,
-                new string[] { },
-                new string[] { }
-            );
+            FMain.SetVisible(new List<Button>() { btnVaoDiem, btnChotPhongThi }, !phongThi.ChotSo);
+            lbTitle.Text = String.Format("{0} | Phòng thi: {1}", phongThi.KhoaThi.TenKhoa, phongThi.TenPhong);
+            getDataGiamThi();
+            getDataThiSinh();
         }
 
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            FMain.GetPage(new FKhoaThi());
+        }
 
         //
-        // get data
+        // getDataThiSinh
         //
-        private bool getPhongThis()
+        private bool getDataThiSinh()
         {
             try
             {
-                phongThis = phongThiDAL.DanhSachPhongThi();
-                dataGridView1.DataSource = phongThis;
+                thiSinhs = phongThiDAL.DanhSachThiSinh();
+                thiSinhsTemp = thiSinhs;
+                dataGridView2.DataSource = thiSinhs;
+
+                FMain.setVisibleColDataGridView(dataGridView2, new int[] { });
+                FMain.setSizeColDataGridView(dataGridView2, "");
+                FMain.setHeaderColDataGridView(dataGridView2,
+                    new string[] { },
+                    new string[] { }
+                );
                 return true;
             }
             catch
             {
-                MessageBox.Show("Lấy dữ liệu phòng thi không thành công, vui lòng kiểm tra lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lấy dữ liệu thí sinh không thành công, vui lòng kiểm tra lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
         }
 
-        private bool loadDataPhongThi()
+        //
+        // getDataGiamThi
+        //
+        private bool getDataGiamThi()
         {
-            SetVisibleBtns(false);
-            return getPhongThis();
-        }
-
-
-        private void btnLoadData_Click(object sender, EventArgs e)
-        {
-            if (loadDataPhongThi())
+            try
             {
-                MessageBox.Show("Tải dữ liệu phòng thi thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                giamThis = phongThiDAL.DanhSachGiamThi();
+                dataGridView3.DataSource = giamThis;
+
+                FMain.setVisibleColDataGridView(dataGridView3, new int[] { });
+                FMain.setSizeColDataGridView(dataGridView3, "");
+                FMain.setHeaderColDataGridView(dataGridView3, "", "");
+                return true;
+            }
+            catch
+            {
+                MessageBox.Show("Lấy dữ liệu giám thị không thành công, vui lòng kiểm tra lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
         }
 
-        private void btnThemPhongThi_Click(object sender, EventArgs e)
+        private void btnVaoDiem_Click(object sender, EventArgs e)
         {
-            //FThemSuaPhongThi fThemSuaPhongThi = new FThemSuaPhongThi();
-            //fThemSuaPhongThi.ShowDialog();
-            //if (fThemSuaPhongThi.Saved) loadDataPhongThi();
+
         }
 
-        private void btnSua_Click(object sender, EventArgs e)
+        private void btnChotPhongThi_Click(object sender, EventArgs e)
         {
-            //FThemSuaPhongThi fThemSuaPhongThi = new FThemSuaPhongThi(phongThi[phongThiIndex]);
-            //fThemSuaPhongThi.ShowDialog();
-            //if (fThemSuaPhongThi.Saved) loadDataPhongThi();
-        }
-
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex > -1)
+            DialogResult dialogResult = MessageBox.Show("Bạn có chắc muốn chốt điểm phòng thi không?", "Cảnh báo", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+            if (dialogResult == DialogResult.Yes)
             {
-                phongThiIndex = e.RowIndex;
-                SetVisibleBtns(true);
+                if (phongThiDAL.ChotSo())
+                {
+                    FMain.SetVisible(new List<Button>() { btnVaoDiem, btnChotPhongThi }, false);
+                    MessageBox.Show("Điểm phòng thi đã được chốt!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                    MessageBox.Show("Thao tác thất bại, vui lòng kiểm tra lại!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-        }
-
-        //
-        // SetVisibleBtns
-        //
-        private void SetVisibleBtns(bool b)
-        {
-            FMain.SetVisible(
-                new List<Button>() {
-                    btnXem,
-                    btnSua,
-                }, b
-            );
-        }
-
-        //
-        //  btnXem
-        //
-        private void btnXem_Click(object sender, EventArgs e)
-        {
-            //FMain.GetPage(new FChiTietPhongThi(phongThis[phongThiIndex]));
         }
     }
 }
