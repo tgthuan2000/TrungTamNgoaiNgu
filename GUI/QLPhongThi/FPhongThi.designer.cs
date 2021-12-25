@@ -28,10 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.lbTitle = new System.Windows.Forms.Label();
             this.btnBack = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
@@ -50,7 +51,6 @@
             this.btnChotPhongThi = new System.Windows.Forms.Button();
             this.panel8 = new System.Windows.Forms.Panel();
             this.btnVaoDiem = new System.Windows.Forms.Button();
-            this.lbTitle = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -87,6 +87,20 @@
             this.panel3.Padding = new System.Windows.Forms.Padding(8);
             this.panel3.Size = new System.Drawing.Size(890, 52);
             this.panel3.TabIndex = 0;
+            // 
+            // lbTitle
+            // 
+            this.lbTitle.AutoEllipsis = true;
+            this.lbTitle.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbTitle.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTitle.ForeColor = System.Drawing.Color.White;
+            this.lbTitle.Location = new System.Drawing.Point(8, 8);
+            this.lbTitle.Name = "lbTitle";
+            this.lbTitle.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.lbTitle.Size = new System.Drawing.Size(781, 36);
+            this.lbTitle.TabIndex = 4;
+            this.lbTitle.Text = "Khoá thi | Phòng thi";
+            this.lbTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // btnBack
             // 
@@ -182,14 +196,14 @@
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.Column2});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.GridColor = System.Drawing.SystemColors.Window;
             this.dataGridView1.Location = new System.Drawing.Point(10, 60);
@@ -198,8 +212,8 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 30;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView1.RowTemplate.Height = 25;
             this.dataGridView1.RowTemplate.ReadOnly = true;
             this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -339,20 +353,6 @@
             this.btnVaoDiem.TabIndex = 0;
             this.btnVaoDiem.UseVisualStyleBackColor = true;
             this.btnVaoDiem.Click += new System.EventHandler(this.btnVaoDiem_Click);
-            // 
-            // lbTitle
-            // 
-            this.lbTitle.AutoEllipsis = true;
-            this.lbTitle.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbTitle.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTitle.ForeColor = System.Drawing.Color.White;
-            this.lbTitle.Location = new System.Drawing.Point(8, 8);
-            this.lbTitle.Name = "lbTitle";
-            this.lbTitle.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.lbTitle.Size = new System.Drawing.Size(781, 36);
-            this.lbTitle.TabIndex = 4;
-            this.lbTitle.Text = "Khoá thi | Phòng thi";
-            this.lbTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // FPhongThi
             // 

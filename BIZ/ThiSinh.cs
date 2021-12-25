@@ -24,6 +24,5 @@ namespace TrungTamNgoaiNgu.BIZ
     
         public virtual NguoiDung NguoiDung { get; set; }
         public virtual PhongThi PhongThi { get; set; }
-        public virtual PhongThi PhongThi1 { get; set; }
     }
 }

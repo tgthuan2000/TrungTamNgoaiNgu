@@ -4,14 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="8e716923a65546dca88f2d8e9f5c5e02" Name="Diagram1">
+      <Diagram DiagramId="10a37577cb464a84aa174d6cfc110df4" Name="Diagram1">
         <EntityTypeShape EntityType="TrungTamNgoaiNguModel.DuThi" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
         <EntityTypeShape EntityType="TrungTamNgoaiNguModel.GiamThi" Width="1.5" PointX="8.25" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TrungTamNgoaiNguModel.GiaoVien" Width="1.5" PointX="6" PointY="1.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TrungTamNgoaiNguModel.KhoaThi" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
         <EntityTypeShape EntityType="TrungTamNgoaiNguModel.NguoiDung" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TrungTamNgoaiNguModel.PhongThi" Width="1.5" PointX="6" PointY="5.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="TrungTamNgoaiNguModel.sysdiagram" Width="1.5" PointX="2.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TrungTamNgoaiNguModel.sysdiagram" Width="1.5" PointX="2.75" PointY="2" IsExpanded="true" />
         <EntityTypeShape EntityType="TrungTamNgoaiNguModel.ThiSinh" Width="1.5" PointX="11.25" PointY="5.25" IsExpanded="true" />
         <EntityTypeShape EntityType="TrungTamNgoaiNguModel.TrinhDo" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
         <AssociationConnector Association="TrungTamNgoaiNguModel.FK_DuThi_KhoaThi" ManuallyRouted="false" />
@@ -23,7 +23,6 @@
         <AssociationConnector Association="TrungTamNgoaiNguModel.FK_ThiSinh_NguoiDung" ManuallyRouted="false" />
         <AssociationConnector Association="TrungTamNgoaiNguModel.FK_PhongThi_TrinhDo" ManuallyRouted="false" />
         <AssociationConnector Association="TrungTamNgoaiNguModel.FK_ThiSinh_PhongThi" ManuallyRouted="false" />
-        <AssociationConnector Association="TrungTamNgoaiNguModel.FK_ThiSinh_PhongThi1" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

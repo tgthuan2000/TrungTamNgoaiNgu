@@ -203,18 +203,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ThiSinh_PhongThi1">
-          <End Role="PhongThi" Type="Self.PhongThi" Multiplicity="1" />
-          <End Role="ThiSinh" Type="Self.ThiSinh" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PhongThi">
-              <PropertyRef Name="MaPhong" />
-            </Principal>
-            <Dependent Role="ThiSinh">
-              <PropertyRef Name="MaPhong" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="TrungTamNgoaiNguModelStoreContainer">
           <EntitySet Name="DuThi" EntityType="Self.DuThi" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GiamThi" EntityType="Self.GiamThi" Schema="dbo" store:Type="Tables" />
@@ -258,10 +246,6 @@
             <End Role="ThiSinh" EntitySet="ThiSinh" />
           </AssociationSet>
           <AssociationSet Name="FK_ThiSinh_PhongThi" Association="Self.FK_ThiSinh_PhongThi">
-            <End Role="PhongThi" EntitySet="PhongThi" />
-            <End Role="ThiSinh" EntitySet="ThiSinh" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ThiSinh_PhongThi1" Association="Self.FK_ThiSinh_PhongThi1">
             <End Role="PhongThi" EntitySet="PhongThi" />
             <End Role="ThiSinh" EntitySet="ThiSinh" />
           </AssociationSet>
@@ -344,7 +328,6 @@
           <NavigationProperty Name="KhoaThi" Relationship="Self.FK_PhongThi_KhoaThi" FromRole="PhongThi" ToRole="KhoaThi" />
           <NavigationProperty Name="TrinhDo" Relationship="Self.FK_PhongThi_TrinhDo" FromRole="PhongThi" ToRole="TrinhDo" />
           <NavigationProperty Name="ThiSinhs" Relationship="Self.FK_ThiSinh_PhongThi" FromRole="PhongThi" ToRole="ThiSinh" />
-          <NavigationProperty Name="ThiSinhs1" Relationship="Self.FK_ThiSinh_PhongThi1" FromRole="PhongThi" ToRole="ThiSinh" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -370,7 +353,6 @@
           <Property Name="DiemViet" Type="Int32" />
           <NavigationProperty Name="NguoiDung" Relationship="Self.FK_ThiSinh_NguoiDung" FromRole="ThiSinh" ToRole="NguoiDung" />
           <NavigationProperty Name="PhongThi" Relationship="Self.FK_ThiSinh_PhongThi" FromRole="ThiSinh" ToRole="PhongThi" />
-          <NavigationProperty Name="PhongThi1" Relationship="Self.FK_ThiSinh_PhongThi1" FromRole="ThiSinh" ToRole="PhongThi" />
         </EntityType>
         <EntityType Name="TrinhDo">
           <Key>
@@ -489,18 +471,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ThiSinh_PhongThi1">
-          <End Role="PhongThi" Type="Self.PhongThi" Multiplicity="1" />
-          <End Role="ThiSinh" Type="Self.ThiSinh" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PhongThi">
-              <PropertyRef Name="MaPhong" />
-            </Principal>
-            <Dependent Role="ThiSinh">
-              <PropertyRef Name="MaPhong" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="TrungTamNgoaiNguEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="DuThis" EntityType="Self.DuThi" />
           <EntitySet Name="GiamThis" EntityType="Self.GiamThi" />
@@ -544,10 +514,6 @@
             <End Role="PhongThi" EntitySet="PhongThis" />
           </AssociationSet>
           <AssociationSet Name="FK_ThiSinh_PhongThi" Association="Self.FK_ThiSinh_PhongThi">
-            <End Role="PhongThi" EntitySet="PhongThis" />
-            <End Role="ThiSinh" EntitySet="ThiSinhs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ThiSinh_PhongThi1" Association="Self.FK_ThiSinh_PhongThi1">
             <End Role="PhongThi" EntitySet="PhongThis" />
             <End Role="ThiSinh" EntitySet="ThiSinhs" />
           </AssociationSet>

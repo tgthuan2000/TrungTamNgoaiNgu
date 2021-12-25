@@ -19,7 +19,6 @@ namespace TrungTamNgoaiNgu.BIZ
         {
             this.GiamThis = new HashSet<GiamThi>();
             this.ThiSinhs = new HashSet<ThiSinh>();
-            this.ThiSinhs1 = new HashSet<ThiSinh>();
         }
     
         public int MaPhong { get; set; }
@@ -34,7 +33,5 @@ namespace TrungTamNgoaiNgu.BIZ
         public virtual TrinhDo TrinhDo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ThiSinh> ThiSinhs { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ThiSinh> ThiSinhs1 { get; set; }
     }
 }

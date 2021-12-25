@@ -48,6 +48,18 @@ namespace TrungTamNgoaiNgu.DAL
 
             return qr.ToList();
         }
+        public List<NguoiDung> DanhSachNguoiDungNgoaiKhoaThi(int maKhoaThi)
+        {
+            db = new TrungTamNgoaiNguEntities();
+            var qr = from nd in db.NguoiDungs
+                     orderby nd.TenNguoiDung descending
+                     select nd;
+            var qr2 = from dt in db.DuThis
+                      where dt.MaKhoaThi == maKhoaThi
+                      select dt.NguoiDung;
+
+            return qr.Except(qr2).ToList();
+        }
         public List<KhoaThi> KhoaThiComboBox(NguoiDung nguoiDung)
         {
             db = new TrungTamNgoaiNguEntities();

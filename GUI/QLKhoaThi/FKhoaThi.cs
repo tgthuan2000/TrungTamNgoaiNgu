@@ -196,7 +196,7 @@ namespace TrungTamNgoaiNgu.GUI.QLKhoaThi
             if (e.RowIndex > -1 && e.RowIndex != duThiIndex)
             {
                 duThiIndex = e.RowIndex;
-                FMain.SetVisible(btnXoaThiSinhDuThi, true);
+                FMain.SetVisible(btnXoaThiSinhDuThi, !khoaThis[khoaThiIndex].ChotSo);
             }
         }
 
