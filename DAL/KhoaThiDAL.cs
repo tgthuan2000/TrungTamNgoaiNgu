@@ -7,8 +7,17 @@ namespace TrungTamNgoaiNgu.DAL
     class KhoaThiDAL
     {
         TrungTamNgoaiNguEntities db;
+        private readonly KhoaThi khoaThi;
 
         public KhoaThiDAL() { }
+
+        //
+        // Chi tiết khoá thi
+        //
+        public KhoaThiDAL(KhoaThi khoaThi)
+        {
+            this.khoaThi = khoaThi;
+        }
 
         public List<KhoaThi> DanhSachKhoaThi()
         {
