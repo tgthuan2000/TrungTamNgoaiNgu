@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using TrungTamNgoaiNgu.BIZ;
 using TrungTamNgoaiNgu.DAL;
@@ -153,7 +154,7 @@ namespace TrungTamNgoaiNgu.GUI.QLKhoaThi
 
         private void getDuThis()
         {
-            duThis = khoaThiDAL.DanhSachDuThi(khoaThis[khoaThiIndex]);
+            duThis = khoaThis[khoaThiIndex].DuThis.ToList();
             dataGridView3.DataSource = duThis;
             duThiIndex = -1;
             FMain.SetVisible(btnXoaThiSinhDuThi, false);
@@ -165,7 +166,7 @@ namespace TrungTamNgoaiNgu.GUI.QLKhoaThi
             {
                 khoaThiIndex = e.RowIndex;
                 getDuThis();
-                phongThis = khoaThiDAL.DanhSachPhongThi(khoaThis[khoaThiIndex]);
+                phongThis = khoaThis[khoaThiIndex].PhongThis.ToList();
                 dataGridView2.DataSource = phongThis;
 
                 FMain.SetVisible(btnChiTietPhong, false);
