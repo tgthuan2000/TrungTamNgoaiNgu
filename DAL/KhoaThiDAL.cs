@@ -11,14 +11,6 @@ namespace TrungTamNgoaiNgu.DAL
 
         public KhoaThiDAL() { }
 
-        //
-        // Chi tiết khoá thi
-        //
-        public KhoaThiDAL(KhoaThi khoaThi)
-        {
-            this.khoaThi = khoaThi;
-        }
-
         public List<KhoaThi> DanhSachKhoaThi()
         {
             db = new TrungTamNgoaiNguEntities();

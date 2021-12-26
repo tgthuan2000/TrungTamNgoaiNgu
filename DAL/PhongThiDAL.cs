@@ -7,15 +7,8 @@ namespace TrungTamNgoaiNgu.DAL
     class PhongThiDAL
     {
         TrungTamNgoaiNguEntities db;
-        private PhongThi phongThi;
+        private readonly PhongThi phongThi;
 
-        public PhongThiDAL()
-        {
-        }
-
-        //
-        // Chi tiết phòng thi
-        //
         public PhongThiDAL(PhongThi phongThi)
         {
             this.phongThi = phongThi;
