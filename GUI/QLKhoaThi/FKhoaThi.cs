@@ -116,7 +116,7 @@ namespace TrungTamNgoaiNgu.GUI.QLKhoaThi
 
             if (flag)
             {
-                DialogResult dialogResult = MessageBox.Show("Bạn có chắc muốn chốt khoá thi không?", "Cảnh báo", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+                DialogResult dialogResult = MessageBox.Show("Bạn có chắc muốn chốt khoá thi không?", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (dialogResult == DialogResult.Yes)
                 {
                     if (khoaThiDAL.ChotSo(khoaThis[khoaThiIndex]))
@@ -133,7 +133,7 @@ namespace TrungTamNgoaiNgu.GUI.QLKhoaThi
         }
         private void btnXoaKhoaThi_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Bạn có chắc muốn xoá khoá thi không?", "Cảnh báo", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+            DialogResult dialogResult = MessageBox.Show("Bạn có chắc muốn xoá khoá thi không?", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (dialogResult == DialogResult.Yes)
             {
                 if (khoaThiDAL.Xoa(khoaThis[khoaThiIndex]))
@@ -202,7 +202,7 @@ namespace TrungTamNgoaiNgu.GUI.QLKhoaThi
 
         private void btnXoaThiSinhDuThi_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Bạn có chắc muốn xoá thí sinh này khỏi danh sách dự thi không?", "Cảnh báo", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+            DialogResult dialogResult = MessageBox.Show("Bạn có chắc muốn xoá thí sinh này khỏi danh sách dự thi không?", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (dialogResult == DialogResult.Yes)
             {
                 if (khoaThiDAL.XoaThiSinhDuThi(duThis[duThiIndex]))

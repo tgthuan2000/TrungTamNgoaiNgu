@@ -10,7 +10,7 @@ namespace TrungTamNgoaiNgu.GUI.QLKhoaThi
     {
         private bool isSuccess = false;
         private int maKhoaThi;
-        private List<NguoiDung> nguoiDungs;
+        private KhoaThiDAL khoaThiDAL;
         public bool Saved
         {
             get { return isSuccess; }
@@ -18,14 +18,16 @@ namespace TrungTamNgoaiNgu.GUI.QLKhoaThi
         public FThemDuThi(int maKhoaThi)
         {
             InitializeComponent();
-            nguoiDungs = new List<NguoiDung>();
+            khoaThiDAL = new KhoaThiDAL();
             this.maKhoaThi = maKhoaThi;
         }
         private void FThemDuThi_Load(object sender, EventArgs e)
         {
             radioButton1.Checked = true;
-            nguoiDungs = new KhoaThiDAL().DanhSachNguoiDungNgoaiKhoaThi(maKhoaThi);
-            dataGridView1.DataSource = nguoiDungs;
+            DataGridViewCheckBoxColumn col1 = new DataGridViewCheckBoxColumn();
+            col1.Width = 50;
+            dataGridView1.Columns.Insert(0, col1);
+            dataGridView1.DataSource = khoaThiDAL.DanhSachNguoiDungNgoaiKhoaThi(maKhoaThi);
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -35,8 +37,26 @@ namespace TrungTamNgoaiNgu.GUI.QLKhoaThi
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            int trinhDo = radioButton1.Checked ? 1 : 2;
+            List<string> CCCDs = new List<string>();
+            for (int i = 0; i < dataGridView1.RowCount; i++)
+            {
+                if (Convert.ToBoolean(dataGridView1.Rows[i].Cells[0].Value))
+                {
+                    CCCDs.Add(Convert.ToString(dataGridView1.Rows[i].Cells[1].Value));
+                }
+            }
+            if (isSuccess = khoaThiDAL.ThemThiSinhDuThi(maKhoaThi, CCCDs, trinhDo))
+                MessageBox.Show("Thêm danh sách dự thi thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            else
+                MessageBox.Show("Thêm danh sách dự thi thất bại, vui lòng kiểm tra lại!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
             Close();
         }
 
+        private void dataGridView1_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            if (e.ColumnIndex != 0) e.Cancel = true;
+        }
     }
 }

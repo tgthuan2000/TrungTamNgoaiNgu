@@ -75,5 +75,24 @@ namespace TrungTamNgoaiNgu.DAL
 
             return db.SaveChanges() > 0;
         }
+
+        public bool LuuDiem(List<ThiSinh> thiSinhs)
+        {
+            db = new TrungTamNgoaiNguEntities();
+            var qr = from ts in db.ThiSinhs
+                     where ts.MaPhong == phongThi.MaPhong
+                     select ts;
+
+            foreach (ThiSinh ts in qr)
+            {
+                ThiSinh thiSinh = thiSinhs.Find(i => i.SBD == ts.SBD);
+                ts.DiemDoc = thiSinh.DiemDoc;
+                ts.DiemNghe = thiSinh.DiemNghe;
+                ts.DiemNoi = thiSinh.DiemNoi;
+                ts.DiemViet = thiSinh.DiemViet;
+            }
+
+            return db.SaveChanges() > 0;
+        }
     }
 }

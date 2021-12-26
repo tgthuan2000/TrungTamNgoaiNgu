@@ -42,7 +42,7 @@ namespace TrungTamNgoaiNgu.DAL
         {
             db = new TrungTamNgoaiNguEntities();
             var qr = from dt in db.DuThis
-                     orderby dt.NguoiDung.TenNguoiDung descending
+                     orderby dt.MaTrinhDo descending, dt.NguoiDung.TenNguoiDung
                      where dt.MaKhoaThi == khoaThi.MaKhoaThi
                      select dt;
 
@@ -54,6 +54,7 @@ namespace TrungTamNgoaiNgu.DAL
             var qr = from nd in db.NguoiDungs
                      orderby nd.TenNguoiDung descending
                      select nd;
+
             var qr2 = from dt in db.DuThis
                       where dt.MaKhoaThi == maKhoaThi
                       select dt.NguoiDung;
@@ -118,6 +119,21 @@ namespace TrungTamNgoaiNgu.DAL
                 db.DuThis.Remove(dt);
             }
 
+            return db.SaveChanges() > 0;
+        }
+        public bool ThemThiSinhDuThi(int maKhoaThi, List<string> CCCDs, int maTrinhDo)
+        {
+            db = new TrungTamNgoaiNguEntities();
+            foreach (string CCCD in CCCDs)
+            {
+                DuThi duThi = new DuThi
+                {
+                    MaKhoaThi = maKhoaThi,
+                    CCCD = CCCD,
+                    MaTrinhDo = maTrinhDo
+                };
+                db.DuThis.Add(duThi);
+            }
             return db.SaveChanges() > 0;
         }
         public bool XoaThiSinhDuThi(DuThi duThi)

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Windows.Forms;
 using TrungTamNgoaiNgu.BIZ;
 using TrungTamNgoaiNgu.DAL;
@@ -12,7 +11,6 @@ namespace TrungTamNgoaiNgu.GUI.QLKhoaThi
         PhongThiDAL phongThiDAL;
         PhongThi phongThi;
         List<ThiSinh> thiSinhs;
-        List<ThiSinh> thiSinhsTemp;
         List<GiamThi> giamThis;
 
         public FPhongThi(PhongThi phongThi)
@@ -21,13 +19,12 @@ namespace TrungTamNgoaiNgu.GUI.QLKhoaThi
             this.phongThi = phongThi;
             phongThiDAL = new PhongThiDAL(phongThi);
             thiSinhs = new List<ThiSinh>();
-            thiSinhsTemp = new List<ThiSinh>();
             giamThis = new List<GiamThi>();
         }
 
         private void FPhongThi_Load(object sender, EventArgs e)
         {
-            FMain.SetVisible(new List<Button>() { btnVaoDiem, btnChotPhongThi }, !phongThi.ChotSo);
+            FMain.SetVisible(new List<Button>() { btnSave, btnChotPhongThi }, !phongThi.ChotSo);
             lbTitle.Text = String.Format("{0} | Phòng thi: {1}", phongThi.KhoaThi.TenKhoa, phongThi.TenPhong);
             getDataGiamThi();
             getDataThiSinh();
@@ -46,7 +43,6 @@ namespace TrungTamNgoaiNgu.GUI.QLKhoaThi
             try
             {
                 thiSinhs = phongThiDAL.DanhSachThiSinh();
-                thiSinhsTemp = thiSinhs;
                 dataGridView2.DataSource = thiSinhs;
 
                 FMain.setVisibleColDataGridView(dataGridView2, new int[] { });
@@ -86,24 +82,44 @@ namespace TrungTamNgoaiNgu.GUI.QLKhoaThi
             }
         }
 
-        private void btnVaoDiem_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnChotPhongThi_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Bạn có chắc muốn chốt điểm phòng thi không?", "Cảnh báo", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+            DialogResult dialogResult = MessageBox.Show("Bạn có chắc muốn chốt điểm phòng thi không?", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (dialogResult == DialogResult.Yes)
             {
                 if (phongThiDAL.ChotSo())
                 {
-                    FMain.SetVisible(new List<Button>() { btnVaoDiem, btnChotPhongThi }, false);
+                    FMain.SetVisible(new List<Button>() { btnSave, btnChotPhongThi }, false);
                     MessageBox.Show("Điểm phòng thi đã được chốt!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                     MessageBox.Show("Thao tác thất bại, vui lòng kiểm tra lại!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void dataGridView2_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            e.Cancel = true;
+            if (!phongThi.ChotSo)
+                switch (e.ColumnIndex)
+                {
+                    case 3:
+                    case 4:
+                    case 5:
+                    case 6:
+                        e.Cancel = false;
+                        break;
+                }
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Xác nhận lưu dữ liệu?", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dialogResult == DialogResult.Yes)
+                if (phongThiDAL.LuuDiem(thiSinhs))
+                    MessageBox.Show("Điểm phòng thi đã được lưu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else
+                    MessageBox.Show("Thao tác thất bại, vui lòng kiểm tra lại!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
     }
 }
