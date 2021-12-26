@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 using TrungTamNgoaiNgu.BIZ;
 using TrungTamNgoaiNgu.DAL;
@@ -60,9 +59,7 @@ namespace TrungTamNgoaiNgu.GUI.QLKhoaThi
             {
                 khoaThis = khoaThiDAL.DanhSachKhoaThi();
                 dataGridView1.DataSource = khoaThis;
-                FMain.SetVisible(btnSuaKhoaThi, false);
-                FMain.SetVisible(btnChotKhoaThi, false);
-                FMain.SetVisible(btnXoaKhoaThi, false);
+                FMain.SetVisible(new List<Button>() { btnSuaKhoaThi, btnChotKhoaThi, btnXoaKhoaThi }, false);
                 return true;
             }
             catch
@@ -76,7 +73,12 @@ namespace TrungTamNgoaiNgu.GUI.QLKhoaThi
         {
             FThemSuaKhoaThi fThemSuaKhoaThi = new FThemSuaKhoaThi();
             fThemSuaKhoaThi.ShowDialog();
-            if (fThemSuaKhoaThi.Saved) getKhoaThis();
+            if (fThemSuaKhoaThi.Saved)
+            {
+                getKhoaThis();
+                dataGridView2.DataSource = null;
+                dataGridView3.DataSource = null;
+            }
         }
 
         private void btnSuaKhoaThi_Click(object sender, EventArgs e)
@@ -140,6 +142,8 @@ namespace TrungTamNgoaiNgu.GUI.QLKhoaThi
                 if (khoaThiDAL.Xoa(khoaThis[khoaThiIndex]))
                 {
                     getKhoaThis();
+                    dataGridView2.DataSource = null;
+                    dataGridView3.DataSource = null;
                     khoaThiIndex = -1;
                     MessageBox.Show("Khoá thi đã được xoá!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -154,7 +158,7 @@ namespace TrungTamNgoaiNgu.GUI.QLKhoaThi
 
         private void getDuThis()
         {
-            duThis = khoaThis[khoaThiIndex].DuThis.ToList();
+            duThis = khoaThiDAL.DanhSachDuThi(khoaThis[khoaThiIndex]);
             dataGridView3.DataSource = duThis;
             duThiIndex = -1;
             FMain.SetVisible(btnXoaThiSinhDuThi, false);
@@ -166,15 +170,19 @@ namespace TrungTamNgoaiNgu.GUI.QLKhoaThi
             {
                 khoaThiIndex = e.RowIndex;
                 getDuThis();
-                phongThis = khoaThis[khoaThiIndex].PhongThis.ToList();
+                phongThis = khoaThiDAL.DanhSachPhongThi(khoaThis[khoaThiIndex]);
                 dataGridView2.DataSource = phongThis;
 
                 FMain.SetVisible(btnChiTietPhong, false);
                 bool isOpen = !khoaThis[khoaThiIndex].ChotSo;
-                FMain.SetVisible(btnSuaKhoaThi, isOpen);
-                FMain.SetVisible(btnThemDuThi, isOpen);
-                FMain.SetVisible(btnChotKhoaThi, isOpen);
-                FMain.SetVisible(btnXoaKhoaThi, isOpen);
+                FMain.SetVisible(new List<Button>()
+                {
+                    btnSuaKhoaThi,
+                    btnThemDuThi,
+                    btnChotKhoaThi,
+                    btnXoaKhoaThi
+                }
+                , isOpen);
             }
         }
 

@@ -89,6 +89,7 @@ namespace TrungTamNgoaiNgu.GUI.QLKhoaThi
             {
                 if (phongThiDAL.ChotSo())
                 {
+                    phongThi.ChotSo = true;
                     FMain.SetVisible(new List<Button>() { btnSave, btnChotPhongThi }, false);
                     MessageBox.Show("Điểm phòng thi đã được chốt!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -117,7 +118,9 @@ namespace TrungTamNgoaiNgu.GUI.QLKhoaThi
             DialogResult dialogResult = MessageBox.Show("Xác nhận lưu dữ liệu?", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialogResult == DialogResult.Yes)
                 if (phongThiDAL.LuuDiem(thiSinhs))
+                {
                     MessageBox.Show("Điểm phòng thi đã được lưu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
                 else
                     MessageBox.Show("Thao tác thất bại, vui lòng kiểm tra lại!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }

@@ -19,7 +19,26 @@ namespace TrungTamNgoaiNgu.DAL
 
             return qr.ToList();
         }
+        public List<PhongThi> DanhSachPhongThi(KhoaThi khoaThi)
+        {
+            db = new TrungTamNgoaiNguEntities();
+            var qr = from pt in db.PhongThis
+                     orderby pt.MaKhoaThi descending
+                     where pt.MaKhoaThi == khoaThi.MaKhoaThi
+                     select pt;
 
+            return qr.ToList();
+        }
+        public List<DuThi> DanhSachDuThi(KhoaThi khoaThi)
+        {
+            db = new TrungTamNgoaiNguEntities();
+            var qr = from dt in db.DuThis
+                     orderby dt.MaTrinhDo descending, dt.NguoiDung.TenNguoiDung
+                     where dt.MaKhoaThi == khoaThi.MaKhoaThi
+                     select dt;
+
+            return qr.ToList();
+        }
         public List<NguoiDung> DanhSachNguoiDungNgoaiKhoaThi(int maKhoaThi)
         {
             db = new TrungTamNgoaiNguEntities();
