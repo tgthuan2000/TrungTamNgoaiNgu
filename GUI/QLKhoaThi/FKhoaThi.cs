@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using TrungTamNgoaiNgu.BIZ;
 using TrungTamNgoaiNgu.DAL;
@@ -9,6 +10,7 @@ namespace TrungTamNgoaiNgu.GUI.QLKhoaThi
     public partial class FKhoaThi : Form
     {
         KhoaThiDAL khoaThiDAL;
+        PhongThiDAL PhongThiDAL;
         List<KhoaThi> khoaThis;
         List<PhongThi> phongThis;
         List<DuThi> duThis;
@@ -20,6 +22,7 @@ namespace TrungTamNgoaiNgu.GUI.QLKhoaThi
         {
             InitializeComponent();
             khoaThiDAL = new KhoaThiDAL();
+            PhongThiDAL = new PhongThiDAL();
             khoaThis = new List<KhoaThi>();
             phongThis = new List<PhongThi>();
             duThis = new List<DuThi>();
@@ -104,6 +107,10 @@ namespace TrungTamNgoaiNgu.GUI.QLKhoaThi
                 {
                     if (khoaThiDAL.ChotSo(khoaThis[khoaThiIndex]))
                     {
+                        PhongThiDAL.createRoom(duThis, countA2, countB1);
+                        PhongThiDAL.AddCandidates(duThis, khoaThis[khoaThiIndex].PhongThis.ToList());
+                        PhongThiDAL.addTeachesIntoRoom(khoaThis[khoaThiIndex].PhongThis.ToList());
+
                         getKhoaThis();
                         MessageBox.Show("Khoá thi đã được chốt, tạo phòng thi thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         dataGridView1.Rows[khoaThiIndex].Selected = true;
