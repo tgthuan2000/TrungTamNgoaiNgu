@@ -7,7 +7,6 @@ namespace TrungTamNgoaiNgu.DAL
     class KhoaThiDAL
     {
         TrungTamNgoaiNguEntities db;
-        private readonly KhoaThi khoaThi;
 
         public KhoaThiDAL() { }
 
@@ -142,7 +141,20 @@ namespace TrungTamNgoaiNgu.DAL
             return db.SaveChanges() > 0;
         }
 
-        public bool ChotSo(KhoaThi khoaThi)
+
+
+        public bool ThemGiaoVien(GiaoVien giaovien)
+        {
+            db = new TrungTamNgoaiNguEntities();
+            db.GiaoViens.Add(giaovien);
+            return db.SaveChanges() > 0;
+        }
+
+
+        //
+        // Chốt sổ + Tạo phòng thi
+        //
+        public bool chotSo(KhoaThi khoaThi)
         {
             db = new TrungTamNgoaiNguEntities();
             var qr = from kt in db.KhoaThis
@@ -155,11 +167,128 @@ namespace TrungTamNgoaiNgu.DAL
             }
             return db.SaveChanges() > 0;
         }
-
-        public bool ThemGiaoVien(GiaoVien giaovien)
+        public bool createRoom(int maKhoaThi, int least, int countA2, int countB1)
         {
             db = new TrungTamNgoaiNguEntities();
-            db.GiaoViens.Add(giaovien);
+
+            int number = 1;
+            for (int i = 0; i < countA2; i += least)
+            {
+                string tenPhong = string.Format("0{0}", number++);
+                tenPhong = string.Format("A2P{0}", tenPhong.Substring(tenPhong.Length - 2, 2));
+                PhongThi phongThi = new PhongThi
+                {
+                    TenPhong = tenPhong,
+                    MaKhoaThi = maKhoaThi,
+                    MaTrinhDo = 2
+                };
+                db.PhongThis.Add(phongThi);
+            }
+
+            number = 1;
+            for (int i = 0; i < countB1; i += least)
+            {
+                string tenPhong = string.Format("0{0}", number++);
+                tenPhong = string.Format("B2P{0}", tenPhong.Substring(tenPhong.Length - 2, 2));
+                PhongThi phongThi = new PhongThi
+                {
+                    TenPhong = tenPhong,
+                    MaKhoaThi = maKhoaThi,
+                    MaTrinhDo = 1
+                };
+                db.PhongThis.Add(phongThi);
+            }
+
+            return db.SaveChanges() > 0;
+        }
+
+        public bool addCandidates(List<PhongThi> phongThis, int least, List<DuThi> duThisA2, List<DuThi> duThisB1)
+        {
+            List<PhongThi> phongThisA2 = phongThis.FindAll(i => i.MaTrinhDo == 2);
+            int index = 0;
+            foreach (PhongThi phongThi in phongThisA2)
+            {
+                for (int i = 0; i < least; i++)
+                {
+                    string sbd = string.Format("00{0}", index + 1);
+                    sbd = string.Format("A2{0}", sbd.Substring(sbd.Length - 3, 3));
+                    ThiSinh thiSinh = new ThiSinh
+                    {
+                        CCCD = duThisA2[index++].CCCD,
+                        MaPhong = phongThi.MaPhong,
+                        SBD = sbd,
+                        DiemNghe = null,
+                        DiemDoc = null,
+                        DiemNoi = null,
+                        DiemViet = null,
+                    };
+                    db.ThiSinhs.Add(thiSinh);
+                    if (index == duThisA2.Count) break;
+                }
+            }
+
+            List<PhongThi> phongThisB1 = phongThis.FindAll(i => i.MaTrinhDo == 1);
+            index = 0;
+            foreach (PhongThi phongThi in phongThisB1)
+            {
+                for (int i = 0; i < least; i++)
+                {
+                    string sbd = string.Format("00{0}", index + 1);
+                    sbd = string.Format("B1{0}", sbd.Substring(sbd.Length - 3, 3));
+                    ThiSinh thiSinh = new ThiSinh
+                    {
+                        CCCD = duThisB1[index++].CCCD,
+                        MaPhong = phongThi.MaPhong,
+                        SBD = sbd,
+                        DiemNghe = null,
+                        DiemDoc = null,
+                        DiemNoi = null,
+                        DiemViet = null,
+                    };
+                    db.ThiSinhs.Add(thiSinh);
+                    if (index == duThisB1.Count) break;
+                }
+            }
+
+            return db.SaveChanges() > 0;
+        }
+
+        public bool addTeachesIntoRoom(List<PhongThi> phongThis)
+        {
+            db = new TrungTamNgoaiNguEntities();
+            var result = from gv in db.GiaoViens select gv;
+            List<GiaoVien> GiaoViens = result.ToList();
+            int index = 0;
+
+            foreach (PhongThi phongThi in phongThis)
+            {
+                if (index == GiaoViens.Count) break;
+                for (int i = 0; i < 2; i++)
+                {
+                    GiamThi giamThi = new GiamThi
+                    {
+                        MaGiaoVien = GiaoViens[index++].MaGiaoVien,
+                        MaPhong = phongThi.MaPhong,
+                        NhiemVu = null
+                    };
+                    db.GiamThis.Add(giamThi);
+                    if (index == GiaoViens.Count) break;
+                }
+            }
+            return db.SaveChanges() > 0;
+        }
+
+        public bool CapNhatNhiemVu(GiamThi giamThi)
+        {
+            db = new TrungTamNgoaiNguEntities();
+            var qr = from gt in db.GiamThis
+                     where gt.MaGiaoVien == giamThi.MaGiaoVien
+                     select gt;
+
+            foreach (GiamThi gt in qr)
+            {
+                gt.NhiemVu = giamThi.NhiemVu;
+            }
             return db.SaveChanges() > 0;
         }
     }

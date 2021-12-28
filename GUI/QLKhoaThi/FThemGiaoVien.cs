@@ -43,13 +43,9 @@ namespace TrungTamNgoaiNgu.GUI.QLKhoaThi
                 };
 
                 if (new KhoaThiDAL().ThemGiaoVien(giaoVien))
-                {
                     MessageBox.Show("Thêm giáo viên thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
                 else
-                {
                     MessageBox.Show("Thêm giáo viên thất bại, vui lòng kiểm tra lại!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
                 Close();
             }
         }

@@ -27,7 +27,7 @@ namespace TrungTamNgoaiNgu.GUI.QLNguoiDung
 
         private void FNguoiDung_Load(object sender, EventArgs e)
         {
-            getNguoiDungs();
+            getDataNguoiDung();
 
             // search
             textBoxSearch.GotFocus += new EventHandler(this.TextGotFocus);
@@ -35,20 +35,29 @@ namespace TrungTamNgoaiNgu.GUI.QLNguoiDung
             getComboBoxSearch();
         }
 
-        private bool getNguoiDungs()
+        private void getDataNguoiDung()
         {
             try
             {
                 nguoiDungs = nguoiDungDAL.DanhSachNguoiDung();
                 nguoiDungsTemp = nguoiDungs;
+                dataGridView1.AutoGenerateColumns = false;
                 dataGridView1.DataSource = nguoiDungs;
+                dataGridView1.Columns["CCCD"].DataPropertyName = "CCCD";
+                dataGridView1.Columns["ho"].DataPropertyName = "HoNguoiDung";
+                dataGridView1.Columns["ten"].DataPropertyName = "TenNguoiDung";
+                dataGridView1.Columns["gioiTinh"].DataPropertyName = "GioiTinh";
+                dataGridView1.Columns["ngaySinh"].DataPropertyName = "NgaySinh";
+                dataGridView1.Columns["noiSinh"].DataPropertyName = "NoiSinh";
+                dataGridView1.Columns["ngayCap"].DataPropertyName = "NgayCap";
+                dataGridView1.Columns["noiCap"].DataPropertyName = "NoiCap";
+                dataGridView1.Columns["sdt"].DataPropertyName = "SoDienThoai";
+                dataGridView1.Columns["email"].DataPropertyName = "Email";
                 FMain.SetVisible(new List<Button>() { btnDangKyDuThi, btnXemKetQuaThi, btnSua }, false);
-                return true;
             }
             catch
             {
                 MessageBox.Show("Lấy dữ liệu người dùng không thành công, vui lòng kiểm tra lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
             }
         }
 
@@ -58,7 +67,7 @@ namespace TrungTamNgoaiNgu.GUI.QLNguoiDung
             fThemSuaNguoiDung.ShowDialog();
             if (fThemSuaNguoiDung.Saved)
             {
-                getNguoiDungs();
+                getDataNguoiDung();
                 nguoiDungIndex = -1;
             }
         }
@@ -69,9 +78,8 @@ namespace TrungTamNgoaiNgu.GUI.QLNguoiDung
             fThemSuaNguoiDung.ShowDialog();
             if (fThemSuaNguoiDung.Saved)
             {
-                getNguoiDungs();
+                getDataNguoiDung();
                 dataGridView1.Rows[nguoiDungIndex].Selected = true;
-                nguoiDungIndex = -1;
             }
         }
 

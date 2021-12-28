@@ -51,6 +51,13 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
+            this.khoaThi = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.phongThi = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sbd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nghe = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.noi = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.doc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.viet = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.panel8.SuspendLayout();
             this.panel9.SuspendLayout();
@@ -293,6 +300,14 @@
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToResizeRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.khoaThi,
+            this.phongThi,
+            this.sbd,
+            this.nghe,
+            this.noi,
+            this.doc,
+            this.viet});
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(10, 38);
             this.dataGridView1.MultiSelect = false;
@@ -325,6 +340,61 @@
             this.label1.TabIndex = 9;
             this.label1.Text = "Thông tin các kỳ thi";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // khoaThi
+            // 
+            this.khoaThi.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.khoaThi.HeaderText = "Khoá thi";
+            this.khoaThi.Name = "khoaThi";
+            this.khoaThi.ReadOnly = true;
+            // 
+            // phongThi
+            // 
+            this.phongThi.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.phongThi.HeaderText = "Phòng thi";
+            this.phongThi.Name = "phongThi";
+            this.phongThi.ReadOnly = true;
+            this.phongThi.Width = 88;
+            // 
+            // sbd
+            // 
+            this.sbd.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.sbd.HeaderText = "SBD";
+            this.sbd.Name = "sbd";
+            this.sbd.ReadOnly = true;
+            this.sbd.Width = 56;
+            // 
+            // nghe
+            // 
+            this.nghe.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.nghe.HeaderText = "Nghe";
+            this.nghe.Name = "nghe";
+            this.nghe.ReadOnly = true;
+            this.nghe.Width = 65;
+            // 
+            // noi
+            // 
+            this.noi.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.noi.HeaderText = "Nói";
+            this.noi.Name = "noi";
+            this.noi.ReadOnly = true;
+            this.noi.Width = 54;
+            // 
+            // doc
+            // 
+            this.doc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.doc.HeaderText = "Đọc";
+            this.doc.Name = "doc";
+            this.doc.ReadOnly = true;
+            this.doc.Width = 56;
+            // 
+            // viet
+            // 
+            this.viet.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.viet.HeaderText = "Viết";
+            this.viet.Name = "viet";
+            this.viet.ReadOnly = true;
+            this.viet.Width = 55;
             // 
             // FKetQuaThi
             // 
@@ -380,5 +450,12 @@
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Label lblHoTen;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn khoaThi;
+        private System.Windows.Forms.DataGridViewTextBoxColumn phongThi;
+        private System.Windows.Forms.DataGridViewTextBoxColumn sbd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nghe;
+        private System.Windows.Forms.DataGridViewTextBoxColumn noi;
+        private System.Windows.Forms.DataGridViewTextBoxColumn doc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn viet;
     }
 }

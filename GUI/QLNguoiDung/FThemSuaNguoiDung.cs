@@ -74,7 +74,6 @@ namespace TrungTamNgoaiNgu.GUI.QLNguoiDung
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            // get data
             string CCCD = textBox1.Text.Trim();
             string noiCap = textBox2.Text.Trim();
             DateTime ngayCap = dateTimePicker1.Value;
@@ -86,7 +85,6 @@ namespace TrungTamNgoaiNgu.GUI.QLNguoiDung
             DateTime ngaySinh = dateTimePicker2.Value;
             string noiSinh = textBox7.Text.Trim();
 
-            // validate
             if (string.IsNullOrEmpty(noiCap) || string.IsNullOrEmpty(ho) || string.IsNullOrEmpty(ten) || string.IsNullOrEmpty(SDT) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(noiSinh))
             {
                 MessageBox.Show("Cần nhập đầy đủ thông tin tất cả các trường!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -104,7 +102,6 @@ namespace TrungTamNgoaiNgu.GUI.QLNguoiDung
             }
             else
             {
-                // query
                 NguoiDung nguoiDung = new NguoiDung
                 {
                     CCCD = CCCD,

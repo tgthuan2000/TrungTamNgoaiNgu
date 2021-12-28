@@ -12,6 +12,7 @@ namespace TrungTamNgoaiNgu.GUI.QLKhoaThi
         PhongThi phongThi;
         List<ThiSinh> thiSinhs;
         List<GiamThi> giamThis;
+        int giamThiIndex;
 
         public FPhongThi(PhongThi phongThi)
         {
@@ -20,6 +21,7 @@ namespace TrungTamNgoaiNgu.GUI.QLKhoaThi
             phongThiDAL = new PhongThiDAL(phongThi);
             thiSinhs = new List<ThiSinh>();
             giamThis = new List<GiamThi>();
+            giamThiIndex = -1;
         }
 
         private void FPhongThi_Load(object sender, EventArgs e)
@@ -28,6 +30,7 @@ namespace TrungTamNgoaiNgu.GUI.QLKhoaThi
             lbTitle.Text = String.Format("{0} | Phòng thi: {1}", phongThi.KhoaThi.TenKhoa, phongThi.TenPhong);
             getDataGiamThi();
             getDataThiSinh();
+            getDataThongTinChung();
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -38,50 +41,58 @@ namespace TrungTamNgoaiNgu.GUI.QLKhoaThi
         //
         // getDataThiSinh
         //
-        private bool getDataThiSinh()
+        private void getDataThiSinh()
         {
             try
             {
                 thiSinhs = phongThiDAL.DanhSachThiSinh();
+                dataGridView2.AutoGenerateColumns = false;
                 dataGridView2.DataSource = thiSinhs;
-
-                FMain.setVisibleColDataGridView(dataGridView2, new int[] { });
-                FMain.setSizeColDataGridView(dataGridView2, "");
-                FMain.setHeaderColDataGridView(dataGridView2,
-                    new string[] { },
-                    new string[] { }
-                );
-                return true;
+                dataGridView2.Columns["SBD"].DataPropertyName = "SBD";
+                dataGridView2.Columns["CCCD"].DataPropertyName = "CCCD";
+                dataGridView2.Columns["nguoiDung"].DataPropertyName = "NguoiDung";
+                dataGridView2.Columns["doc"].DataPropertyName = "DiemDoc";
+                dataGridView2.Columns["nghe"].DataPropertyName = "DiemNghe";
+                dataGridView2.Columns["noi"].DataPropertyName = "DiemNoi";
+                dataGridView2.Columns["viet"].DataPropertyName = "DiemViet";
             }
             catch
             {
                 MessageBox.Show("Lấy dữ liệu thí sinh không thành công, vui lòng kiểm tra lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
             }
         }
 
         //
         // getDataGiamThi
         //
-        private bool getDataGiamThi()
+        private void getDataGiamThi()
         {
             try
             {
                 giamThis = phongThiDAL.DanhSachGiamThi();
+                dataGridView3.AutoGenerateColumns = false;
                 dataGridView3.DataSource = giamThis;
-
-                FMain.setVisibleColDataGridView(dataGridView3, new int[] { });
-                FMain.setSizeColDataGridView(dataGridView3, "");
-                FMain.setHeaderColDataGridView(dataGridView3, "", "");
-                return true;
+                dataGridView3.Columns["giaoVien"].DataPropertyName = "GiaoVien";
+                dataGridView3.Columns["nhiemVu"].DataPropertyName = "NhiemVu";
+                FMain.SetVisible(btnNhiemVu, false);
             }
             catch
             {
                 MessageBox.Show("Lấy dữ liệu giám thị không thành công, vui lòng kiểm tra lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
             }
         }
 
+        //
+        // getDataThongTinChung
+        //
+        private void getDataThongTinChung()
+        {
+            dataGridView1.Rows.Clear();
+
+            dataGridView1.Rows.Add(new string[] { "Trạng thái chốt sổ", phongThi.ChotSo ? "Đã chốt sổ" : "Chưa chốt sổ" });
+            dataGridView1.Rows.Add(new string[] { "Sỉ số", thiSinhs.Count.ToString() });
+
+        }
         private void btnChotPhongThi_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Bạn có chắc muốn chốt điểm phòng thi không?", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
@@ -90,7 +101,8 @@ namespace TrungTamNgoaiNgu.GUI.QLKhoaThi
                 if (phongThiDAL.ChotSo())
                 {
                     phongThi.ChotSo = true;
-                    FMain.SetVisible(new List<Button>() { btnSave, btnChotPhongThi }, false);
+                    FMain.SetVisible(new List<Button>() { btnSave, btnChotPhongThi, btnNhiemVu }, false);
+                    getDataThongTinChung();
                     MessageBox.Show("Điểm phòng thi đã được chốt!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
@@ -117,12 +129,27 @@ namespace TrungTamNgoaiNgu.GUI.QLKhoaThi
         {
             DialogResult dialogResult = MessageBox.Show("Xác nhận lưu dữ liệu?", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialogResult == DialogResult.Yes)
+            {
                 if (phongThiDAL.LuuDiem(thiSinhs))
-                {
                     MessageBox.Show("Điểm phòng thi đã được lưu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
                 else
-                    MessageBox.Show("Thao tác thất bại, vui lòng kiểm tra lại!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Dữ liệu không thay đổi!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void dataGridView3_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex > -1)
+            {
+                giamThiIndex = e.RowIndex;
+                FMain.SetVisible(btnNhiemVu, !phongThi.ChotSo);
+            }
+        }
+
+        private void btnNhiemVu_Click(object sender, EventArgs e)
+        {
+            FNhiemVu fNhiemVu = new FNhiemVu(giamThis[giamThiIndex]);
+            if (fNhiemVu.Saved) getDataGiamThi();
         }
     }
 }

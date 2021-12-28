@@ -9,8 +9,8 @@ namespace TrungTamNgoaiNgu.GUI.QLKhoaThi
 {
     public partial class FKhoaThi : Form
     {
+        private readonly int LEAST = 8;
         KhoaThiDAL khoaThiDAL;
-        PhongThiDAL PhongThiDAL;
         List<KhoaThi> khoaThis;
         List<PhongThi> phongThis;
         List<DuThi> duThis;
@@ -22,7 +22,6 @@ namespace TrungTamNgoaiNgu.GUI.QLKhoaThi
         {
             InitializeComponent();
             khoaThiDAL = new KhoaThiDAL();
-            PhongThiDAL = new PhongThiDAL();
             khoaThis = new List<KhoaThi>();
             phongThis = new List<PhongThi>();
             duThis = new List<DuThi>();
@@ -36,19 +35,21 @@ namespace TrungTamNgoaiNgu.GUI.QLKhoaThi
             getKhoaThis();
         }
 
-        private bool getKhoaThis()
+        private void getKhoaThis()
         {
             try
             {
                 khoaThis = khoaThiDAL.DanhSachKhoaThi();
+                dataGridView1.AutoGenerateColumns = false;
                 dataGridView1.DataSource = khoaThis;
+                dataGridView1.Columns["khoaThiChotSo"].DataPropertyName = "ChotSo";
+                dataGridView1.Columns["tenKhoa"].DataPropertyName = "TenKhoa";
+                dataGridView1.Columns["ngayThi"].DataPropertyName = "NgayThi";
                 FMain.SetVisible(new List<Button>() { btnSuaKhoaThi, btnChotKhoaThi, btnXoaKhoaThi }, false);
-                return true;
             }
             catch
             {
                 MessageBox.Show("Lấy dữ liệu khoá thi không thành công, vui lòng kiểm tra lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
             }
         }
 
@@ -77,9 +78,10 @@ namespace TrungTamNgoaiNgu.GUI.QLKhoaThi
         }
         private void btnChotKhoaThi_Click(object sender, EventArgs e)
         {
-            int least = 5;
-            int countB1 = duThis.FindAll(i => i.MaTrinhDo == 1).Count;
-            int countA2 = duThis.FindAll(i => i.MaTrinhDo == 2).Count;
+            List<DuThi> duThisB1 = duThis.FindAll(i => i.MaTrinhDo == 1);
+            int countB1 = duThisB1.Count;
+            List<DuThi> duThisA2 = duThis.FindAll(i => i.MaTrinhDo == 2);
+            int countA2 = duThisA2.Count;
 
             if (countA2 == 0 && countB1 == 0)
             {
@@ -88,13 +90,13 @@ namespace TrungTamNgoaiNgu.GUI.QLKhoaThi
             }
 
             bool flag = true;
-            if (countB1 > 0 && countB1 < least)
+            if (countB1 > 0 && countB1 < LEAST)
             {
                 flag = false;
                 MessageBox.Show("Danh sách thí sinh B1 không đủ chỉ tiêu!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
-            if (countA2 > 0 && countA2 < least)
+            if (countA2 > 0 && countA2 < LEAST)
             {
                 flag = false;
                 MessageBox.Show("Danh sách thí sinh A2 không đủ chỉ tiêu!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -105,16 +107,15 @@ namespace TrungTamNgoaiNgu.GUI.QLKhoaThi
                 DialogResult dialogResult = MessageBox.Show("Bạn có chắc muốn chốt khoá thi không?", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    if (khoaThiDAL.ChotSo(khoaThis[khoaThiIndex]))
+                    if (khoaThiDAL.chotSo(khoaThis[khoaThiIndex]))
                     {
-                        PhongThiDAL.createRoom(duThis, countA2, countB1);
-                        PhongThiDAL.AddCandidates(duThis, khoaThis[khoaThiIndex].PhongThis.ToList());
-                        PhongThiDAL.addTeachesIntoRoom(khoaThis[khoaThiIndex].PhongThis.ToList());
-
+                        khoaThiDAL.createRoom(khoaThis[khoaThiIndex].MaKhoaThi, LEAST, countA2, countB1);
+                        khoaThiDAL.addCandidates(khoaThis[khoaThiIndex].PhongThis.ToList(), LEAST, duThisA2, duThisB1);
+                        khoaThiDAL.addTeachesIntoRoom(khoaThis[khoaThiIndex].PhongThis.ToList());
                         getKhoaThis();
-                        MessageBox.Show("Khoá thi đã được chốt, tạo phòng thi thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        getDataPhongThi();
                         dataGridView1.Rows[khoaThiIndex].Selected = true;
-                        khoaThiIndex = -1;
+                        MessageBox.Show("Khoá thi đã được chốt, tạo phòng thi thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                         MessageBox.Show("Thao tác thất bại, vui lòng kiểm tra lại!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -143,12 +144,27 @@ namespace TrungTamNgoaiNgu.GUI.QLKhoaThi
             new FThemGiaoVien();
         }
 
-        private void getDuThis()
+        private void getDataDuThi()
         {
             duThis = khoaThiDAL.DanhSachDuThi(khoaThis[khoaThiIndex]);
+            dataGridView3.AutoGenerateColumns = false;
             dataGridView3.DataSource = duThis;
+            dataGridView3.Columns["CCCD"].DataPropertyName = "CCCD";
+            dataGridView3.Columns["nguoiDung"].DataPropertyName = "NguoiDung";
+            dataGridView3.Columns["trinhDoDuThi"].DataPropertyName = "TrinhDo";
             duThiIndex = -1;
             FMain.SetVisible(btnXoaThiSinhDuThi, false);
+        }
+        private void getDataPhongThi()
+        {
+            phongThis = khoaThiDAL.DanhSachPhongThi(khoaThis[khoaThiIndex]);
+            dataGridView2.AutoGenerateColumns = false;
+            dataGridView2.DataSource = phongThis;
+            dataGridView2.Columns["phongThiChotSo"].DataPropertyName = "ChotSo";
+            dataGridView2.Columns["tenPhong"].DataPropertyName = "TenPhong";
+            dataGridView2.Columns["trinhDo"].DataPropertyName = "TrinhDo";
+            phongThiIndex = -1;
+            FMain.SetVisible(btnChiTietPhong, false);
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -156,11 +172,9 @@ namespace TrungTamNgoaiNgu.GUI.QLKhoaThi
             if (e.RowIndex > -1 && e.RowIndex != khoaThiIndex)
             {
                 khoaThiIndex = e.RowIndex;
-                getDuThis();
-                phongThis = khoaThiDAL.DanhSachPhongThi(khoaThis[khoaThiIndex]);
-                dataGridView2.DataSource = phongThis;
+                getDataDuThi();
+                getDataPhongThi();
 
-                FMain.SetVisible(btnChiTietPhong, false);
                 bool isOpen = !khoaThis[khoaThiIndex].ChotSo;
                 FMain.SetVisible(new List<Button>()
                 {
@@ -203,7 +217,7 @@ namespace TrungTamNgoaiNgu.GUI.QLKhoaThi
             {
                 if (khoaThiDAL.XoaThiSinhDuThi(duThis[duThiIndex]))
                 {
-                    getDuThis();
+                    getDataDuThi();
                     MessageBox.Show("Thí sinh đã được xoá khỏi danh sách dự thi!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
@@ -215,7 +229,7 @@ namespace TrungTamNgoaiNgu.GUI.QLKhoaThi
         {
             FThemDuThi fThemDuThi = new FThemDuThi(khoaThis[khoaThiIndex].MaKhoaThi);
             fThemDuThi.ShowDialog();
-            if (fThemDuThi.Saved) getDuThis();
+            if (fThemDuThi.Saved) getDataDuThi();
         }
     }
 }

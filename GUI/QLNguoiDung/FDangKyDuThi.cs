@@ -31,7 +31,6 @@ namespace TrungTamNgoaiNgu.GUI.QLNguoiDung
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            // get data
             int maKhoaThi;
             try
             {
@@ -41,14 +40,10 @@ namespace TrungTamNgoaiNgu.GUI.QLNguoiDung
             int trinhDo = radioButton1.Checked ? 1 : 2; // 1 - B1 | 2 - A2
 
 
-            // validate
             if (maKhoaThi == -1)
-            {
                 MessageBox.Show("Khoá thi không hợp lệ!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
             else
             {
-                // query
                 DuThi duThi = new DuThi
                 {
                     CCCD = nguoiDung.CCCD,
