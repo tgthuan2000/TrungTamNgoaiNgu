@@ -65,25 +65,17 @@ namespace TrungTamNgoaiNgu.GUI.QLKhoaThi
                 if (isThem)
                 {
                     if (isSuccess = khoaThiDAL.Them(khoaThi))
-                    {
                         MessageBox.Show("Thêm khoá thi thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
                     else
-                    {
                         MessageBox.Show("Thêm khoá thi thất bại, vui lòng kiểm tra lại!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
                 }
                 else
                 {
                     khoaThi.MaKhoaThi = maKhoaThi;
                     if (isSuccess = khoaThiDAL.Sua(khoaThi))
-                    {
                         MessageBox.Show("Sửa khoá thi thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
                     else
-                    {
                         MessageBox.Show("Dữ liệu khoá thi không đổi!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
                 }
                 Close();
             }

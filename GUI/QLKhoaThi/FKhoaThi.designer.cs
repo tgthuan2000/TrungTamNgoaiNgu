@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnThemGiaoVien = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -58,6 +59,15 @@
             this.btnXoaThiSinhDuThi = new System.Windows.Forms.Button();
             this.panel16 = new System.Windows.Forms.Panel();
             this.btnThemDuThi = new System.Windows.Forms.Button();
+            this.khoaThiChotSo = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.tenKhoa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ngayThi = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.phongThiChotSo = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.tenPhong = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.trinhDo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CCCD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NguoiDung = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.trinhDoDuThi = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -124,6 +134,10 @@
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToResizeRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.khoaThiChotSo,
+            this.tenKhoa,
+            this.ngayThi});
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(10, 60);
             this.dataGridView1.MultiSelect = false;
@@ -283,6 +297,10 @@
             this.dataGridView2.AllowUserToDeleteRows = false;
             this.dataGridView2.AllowUserToResizeRows = false;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.phongThiChotSo,
+            this.tenPhong,
+            this.trinhDo});
             this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView2.Location = new System.Drawing.Point(10, 60);
             this.dataGridView2.MultiSelect = false;
@@ -380,6 +398,10 @@
             this.dataGridView3.AllowUserToDeleteRows = false;
             this.dataGridView3.AllowUserToResizeRows = false;
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.CCCD,
+            this.NguoiDung,
+            this.trinhDoDuThi});
             this.dataGridView3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView3.Location = new System.Drawing.Point(0, 50);
             this.dataGridView3.MultiSelect = false;
@@ -468,6 +490,89 @@
             this.btnThemDuThi.Visible = false;
             this.btnThemDuThi.Click += new System.EventHandler(this.btnThemDuThi_Click);
             // 
+            // khoaThiChotSo
+            // 
+            this.khoaThiChotSo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.khoaThiChotSo.HeaderText = "Chốt sổ";
+            this.khoaThiChotSo.Name = "khoaThiChotSo";
+            this.khoaThiChotSo.ReadOnly = true;
+            this.khoaThiChotSo.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.khoaThiChotSo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.khoaThiChotSo.Width = 78;
+            // 
+            // tenKhoa
+            // 
+            this.tenKhoa.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.tenKhoa.HeaderText = "Khoá thi";
+            this.tenKhoa.Name = "tenKhoa";
+            this.tenKhoa.ReadOnly = true;
+            this.tenKhoa.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // ngayThi
+            // 
+            this.ngayThi.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle4.Format = "dd/MM/yyyy";
+            this.ngayThi.DefaultCellStyle = dataGridViewCellStyle4;
+            this.ngayThi.HeaderText = "Ngày thi";
+            this.ngayThi.Name = "ngayThi";
+            this.ngayThi.ReadOnly = true;
+            this.ngayThi.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ngayThi.Width = 82;
+            // 
+            // phongThiChotSo
+            // 
+            this.phongThiChotSo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.phongThiChotSo.HeaderText = "Chốt sổ";
+            this.phongThiChotSo.Name = "phongThiChotSo";
+            this.phongThiChotSo.ReadOnly = true;
+            this.phongThiChotSo.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.phongThiChotSo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.phongThiChotSo.Width = 78;
+            // 
+            // tenPhong
+            // 
+            this.tenPhong.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.tenPhong.HeaderText = "Phòng thi";
+            this.tenPhong.Name = "tenPhong";
+            this.tenPhong.ReadOnly = true;
+            this.tenPhong.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // trinhDo
+            // 
+            this.trinhDo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.trinhDo.HeaderText = "Trình độ";
+            this.trinhDo.Name = "trinhDo";
+            this.trinhDo.ReadOnly = true;
+            this.trinhDo.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.trinhDo.Width = 81;
+            // 
+            // CCCD
+            // 
+            this.CCCD.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.CCCD.HeaderText = "CCCD";
+            this.CCCD.Name = "CCCD";
+            this.CCCD.ReadOnly = true;
+            this.CCCD.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.CCCD.Width = 66;
+            // 
+            // NguoiDung
+            // 
+            this.NguoiDung.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.NguoiDung.HeaderText = "Họ và tên";
+            this.NguoiDung.Name = "NguoiDung";
+            this.NguoiDung.ReadOnly = true;
+            this.NguoiDung.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // trinhDoDuThi
+            // 
+            this.trinhDoDuThi.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.trinhDoDuThi.HeaderText = "Trình độ dự thi";
+            this.trinhDoDuThi.Name = "trinhDoDuThi";
+            this.trinhDoDuThi.ReadOnly = true;
+            this.trinhDoDuThi.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.trinhDoDuThi.Width = 119;
+            // 
             // FKhoaThi
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -537,5 +642,14 @@
         private System.Windows.Forms.Panel panel14;
         private System.Windows.Forms.Button btnXoaKhoaThi;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn khoaThiChotSo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tenKhoa;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ngayThi;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn phongThiChotSo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tenPhong;
+        private System.Windows.Forms.DataGridViewTextBoxColumn trinhDo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CCCD;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NguoiDung;
+        private System.Windows.Forms.DataGridViewTextBoxColumn trinhDoDuThi;
     }
 }

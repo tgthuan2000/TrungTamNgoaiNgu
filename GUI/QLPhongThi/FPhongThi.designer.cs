@@ -30,6 +30,10 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.lbTitle = new System.Windows.Forms.Label();
@@ -37,7 +41,12 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.giaoVien = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nhiemVu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel10 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
+            this.panel12 = new System.Windows.Forms.Panel();
+            this.btnNhiemVu = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -45,24 +54,33 @@
             this.label3 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.sbd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CCCD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nguoiDung = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.doc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nghe = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.noi = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.viet = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.panel8 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
+            this.panel8 = new System.Windows.Forms.Panel();
             this.btnSave = new System.Windows.Forms.Button();
+            this.panel9 = new System.Windows.Forms.Panel();
             this.btnChotPhongThi = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            this.panel10.SuspendLayout();
+            this.panel12.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.panel7.SuspendLayout();
-            this.panel9.SuspendLayout();
             this.panel8.SuspendLayout();
+            this.panel9.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
@@ -131,7 +149,7 @@
             // panel6
             // 
             this.panel6.Controls.Add(this.dataGridView3);
-            this.panel6.Controls.Add(this.label1);
+            this.panel6.Controls.Add(this.panel10);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel6.Location = new System.Drawing.Point(0, 274);
             this.panel6.Name = "panel6";
@@ -146,6 +164,9 @@
             this.dataGridView3.AllowUserToResizeRows = false;
             this.dataGridView3.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.giaoVien,
+            this.nhiemVu});
             this.dataGridView3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView3.Location = new System.Drawing.Point(10, 50);
             this.dataGridView3.MultiSelect = false;
@@ -155,21 +176,73 @@
             this.dataGridView3.RowHeadersWidth = 30;
             this.dataGridView3.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView3.Size = new System.Drawing.Size(359, 12);
-            this.dataGridView3.TabIndex = 5;
+            this.dataGridView3.TabIndex = 7;
+            this.dataGridView3.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView3_CellClick);
+            // 
+            // giaoVien
+            // 
+            this.giaoVien.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.giaoVien.HeaderText = "Họ và tên";
+            this.giaoVien.Name = "giaoVien";
+            this.giaoVien.ReadOnly = true;
+            // 
+            // nhiemVu
+            // 
+            this.nhiemVu.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.nhiemVu.HeaderText = "Nhiệm vụ";
+            this.nhiemVu.Name = "nhiemVu";
+            this.nhiemVu.ReadOnly = true;
+            this.nhiemVu.Width = 77;
+            // 
+            // panel10
+            // 
+            this.panel10.Controls.Add(this.label1);
+            this.panel10.Controls.Add(this.panel12);
+            this.panel10.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel10.Location = new System.Drawing.Point(10, 0);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(359, 50);
+            this.panel10.TabIndex = 6;
             // 
             // label1
             // 
             this.label1.BackColor = System.Drawing.SystemColors.Control;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(10, 0);
+            this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
             this.label1.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.label1.Size = new System.Drawing.Size(359, 50);
-            this.label1.TabIndex = 4;
+            this.label1.Size = new System.Drawing.Size(310, 50);
+            this.label1.TabIndex = 11;
             this.label1.Text = "Giám thị";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // panel12
+            // 
+            this.panel12.Controls.Add(this.btnNhiemVu);
+            this.panel12.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel12.Location = new System.Drawing.Point(310, 0);
+            this.panel12.Name = "panel12";
+            this.panel12.Padding = new System.Windows.Forms.Padding(5, 5, 0, 5);
+            this.panel12.Size = new System.Drawing.Size(49, 50);
+            this.panel12.TabIndex = 8;
+            // 
+            // btnNhiemVu
+            // 
+            this.btnNhiemVu.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnNhiemVu.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnNhiemVu.Enabled = false;
+            this.btnNhiemVu.FlatAppearance.BorderSize = 0;
+            this.btnNhiemVu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNhiemVu.Image = global::TrungTamNgoaiNgu.Properties.Resources.edit;
+            this.btnNhiemVu.Location = new System.Drawing.Point(5, 5);
+            this.btnNhiemVu.Name = "btnNhiemVu";
+            this.btnNhiemVu.Size = new System.Drawing.Size(44, 40);
+            this.btnNhiemVu.TabIndex = 0;
+            this.btnNhiemVu.UseVisualStyleBackColor = true;
+            this.btnNhiemVu.Visible = false;
+            this.btnNhiemVu.Click += new System.EventHandler(this.btnNhiemVu_Click);
             // 
             // panel5
             // 
@@ -188,7 +261,7 @@
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -229,14 +302,12 @@
             this.Column1.HeaderText = "Column1";
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
-            this.Column1.Width = 5;
             // 
             // Column2
             // 
             this.Column2.HeaderText = "Column2";
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
-            this.Column2.Width = 5;
             // 
             // label3
             // 
@@ -270,6 +341,14 @@
             this.dataGridView2.AllowUserToResizeRows = false;
             this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.sbd,
+            this.CCCD,
+            this.nguoiDung,
+            this.doc,
+            this.nghe,
+            this.noi,
+            this.viet});
             this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView2.Location = new System.Drawing.Point(10, 60);
             this.dataGridView2.MultiSelect = false;
@@ -281,6 +360,65 @@
             this.dataGridView2.TabIndex = 6;
             this.dataGridView2.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dataGridView2_CellBeginEdit);
             // 
+            // sbd
+            // 
+            this.sbd.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.sbd.HeaderText = "SBD";
+            this.sbd.Name = "sbd";
+            this.sbd.ReadOnly = true;
+            this.sbd.Width = 54;
+            // 
+            // CCCD
+            // 
+            this.CCCD.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.CCCD.HeaderText = "CCCD";
+            this.CCCD.Name = "CCCD";
+            this.CCCD.ReadOnly = true;
+            this.CCCD.Width = 61;
+            // 
+            // nguoiDung
+            // 
+            this.nguoiDung.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nguoiDung.HeaderText = "Họ và tên";
+            this.nguoiDung.Name = "nguoiDung";
+            this.nguoiDung.ReadOnly = true;
+            // 
+            // doc
+            // 
+            this.doc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.doc.DefaultCellStyle = dataGridViewCellStyle3;
+            this.doc.HeaderText = "Đọc";
+            this.doc.Name = "doc";
+            this.doc.Width = 52;
+            // 
+            // nghe
+            // 
+            this.nghe.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.nghe.DefaultCellStyle = dataGridViewCellStyle4;
+            this.nghe.HeaderText = "Nghe";
+            this.nghe.Name = "nghe";
+            this.nghe.Width = 58;
+            // 
+            // noi
+            // 
+            this.noi.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.noi.DefaultCellStyle = dataGridViewCellStyle5;
+            this.noi.HeaderText = "Nói";
+            this.noi.Name = "noi";
+            this.noi.Width = 48;
+            // 
+            // viet
+            // 
+            this.viet.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.viet.DefaultCellStyle = dataGridViewCellStyle6;
+            this.viet.HeaderText = "Viết";
+            this.viet.Name = "viet";
+            this.viet.Width = 50;
+            // 
             // panel7
             // 
             this.panel7.Controls.Add(this.label2);
@@ -291,26 +429,6 @@
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(521, 50);
             this.panel7.TabIndex = 5;
-            // 
-            // panel9
-            // 
-            this.panel9.Controls.Add(this.btnChotPhongThi);
-            this.panel9.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel9.Location = new System.Drawing.Point(472, 0);
-            this.panel9.Name = "panel9";
-            this.panel9.Padding = new System.Windows.Forms.Padding(5, 5, 0, 5);
-            this.panel9.Size = new System.Drawing.Size(49, 50);
-            this.panel9.TabIndex = 8;
-            // 
-            // panel8
-            // 
-            this.panel8.Controls.Add(this.btnSave);
-            this.panel8.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel8.Location = new System.Drawing.Point(423, 0);
-            this.panel8.Name = "panel8";
-            this.panel8.Padding = new System.Windows.Forms.Padding(5, 5, 0, 5);
-            this.panel8.Size = new System.Drawing.Size(49, 50);
-            this.panel8.TabIndex = 10;
             // 
             // label2
             // 
@@ -326,6 +444,16 @@
             this.label2.Text = "Danh sách thí sinh";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // panel8
+            // 
+            this.panel8.Controls.Add(this.btnSave);
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel8.Location = new System.Drawing.Point(423, 0);
+            this.panel8.Name = "panel8";
+            this.panel8.Padding = new System.Windows.Forms.Padding(5, 5, 0, 5);
+            this.panel8.Size = new System.Drawing.Size(49, 50);
+            this.panel8.TabIndex = 10;
+            // 
             // btnSave
             // 
             this.btnSave.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -339,6 +467,16 @@
             this.btnSave.TabIndex = 0;
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // panel9
+            // 
+            this.panel9.Controls.Add(this.btnChotPhongThi);
+            this.panel9.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel9.Location = new System.Drawing.Point(472, 0);
+            this.panel9.Name = "panel9";
+            this.panel9.Padding = new System.Windows.Forms.Padding(5, 5, 0, 5);
+            this.panel9.Size = new System.Drawing.Size(49, 50);
+            this.panel9.TabIndex = 8;
             // 
             // btnChotPhongThi
             // 
@@ -370,13 +508,15 @@
             this.panel1.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
+            this.panel10.ResumeLayout(false);
+            this.panel12.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.panel7.ResumeLayout(false);
-            this.panel9.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
+            this.panel9.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -389,8 +529,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.DataGridView dataGridView3;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridView dataGridView1;
@@ -404,5 +542,19 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.DataGridViewTextBoxColumn sbd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CCCD;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nguoiDung;
+        private System.Windows.Forms.DataGridViewTextBoxColumn doc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nghe;
+        private System.Windows.Forms.DataGridViewTextBoxColumn noi;
+        private System.Windows.Forms.DataGridViewTextBoxColumn viet;
+        private System.Windows.Forms.DataGridView dataGridView3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn giaoVien;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nhiemVu;
+        private System.Windows.Forms.Panel panel10;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel panel12;
+        private System.Windows.Forms.Button btnNhiemVu;
     }
 }

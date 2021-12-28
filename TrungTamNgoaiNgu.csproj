@@ -71,6 +71,7 @@
     <Compile Include="BIZ\GiaoVien.cs">
       <DependentUpon>TrungTamNgoaiNguEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="BIZ\KetQuaThi.cs" />
     <Compile Include="BIZ\KhoaThi.cs">
       <DependentUpon>TrungTamNgoaiNguEntities.tt</DependentUpon>
     </Compile>
@@ -172,6 +173,12 @@
     <Compile Include="GUI\QLPhongThi\FPhongThi.designer.cs">
       <DependentUpon>FPhongThi.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\QLPhongThi\FNhiemVu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\QLPhongThi\FNhiemVu.designer.cs">
+      <DependentUpon>FNhiemVu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="GUI\FMain.resx">
@@ -203,6 +210,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\QLPhongThi\FPhongThi.resx">
       <DependentUpon>FPhongThi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\QLPhongThi\FNhiemVu.resx">
+      <DependentUpon>FNhiemVu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

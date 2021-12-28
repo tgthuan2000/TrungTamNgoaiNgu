@@ -30,12 +30,21 @@ namespace TrungTamNgoaiNgu.DAL
 
             return qr.ToList();
         }
-        public List<ThiSinh> DanhSachKetQuaThi(NguoiDung nguoiDung)
+        public List<KetQuaThi> DanhSachKetQuaThi(NguoiDung nguoiDung)
         {
             db = new TrungTamNgoaiNguEntities();
             var qr = from ts in db.ThiSinhs
                      where ts.CCCD == nguoiDung.CCCD
-                     select ts;
+                     select new KetQuaThi
+                     {
+                         KhoaThi = ts.PhongThi.KhoaThi,
+                         PhongThi = ts.PhongThi,
+                         SBD = ts.SBD,
+                         DiemDoc = ts.DiemDoc,
+                         DiemNghe = ts.DiemNghe,
+                         DiemNoi = ts.DiemNoi,
+                         DiemViet = ts.DiemViet,
+                     };
 
             return qr.ToList();
         }

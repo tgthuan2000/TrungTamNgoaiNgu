@@ -9,10 +9,15 @@ namespace TrungTamNgoaiNgu.DAL
         TrungTamNgoaiNguEntities db;
         private readonly PhongThi phongThi;
 
+        public PhongThiDAL()
+        {
+
+        }
         public PhongThiDAL(PhongThi phongThi)
         {
             this.phongThi = phongThi;
         }
+
 
         public List<PhongThi> DanhSachPhongThi()
         {

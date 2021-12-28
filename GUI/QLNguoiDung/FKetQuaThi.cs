@@ -22,9 +22,17 @@ namespace TrungTamNgoaiNgu.GUI.QLNguoiDung
         }
         private void FKetQuaThi_Load(object sender, EventArgs e)
         {
-            List<ThiSinh> thiSinhs = new NguoiDungDAL().DanhSachKetQuaThi(nguoiDung);
-            dataGridView1.DataSource = thiSinhs;
-            lblSoLanThi.Text = thiSinhs.Count.ToString();
+            List<KetQuaThi> ketQuaThis = new NguoiDungDAL().DanhSachKetQuaThi(nguoiDung);
+            dataGridView1.AutoGenerateColumns = false;
+            dataGridView1.DataSource = ketQuaThis;
+            dataGridView1.Columns["khoaThi"].DataPropertyName = "KhoaThi";
+            dataGridView1.Columns["phongThi"].DataPropertyName = "PhongThi";
+            dataGridView1.Columns["sbd"].DataPropertyName = "SBD";
+            dataGridView1.Columns["nghe"].DataPropertyName = "DiemNghe";
+            dataGridView1.Columns["noi"].DataPropertyName = "DiemNoi";
+            dataGridView1.Columns["doc"].DataPropertyName = "DiemDoc";
+            dataGridView1.Columns["viet"].DataPropertyName = "DiemViet";
+            lblSoLanThi.Text = ketQuaThis.Count.ToString();
         }
     }
 }
