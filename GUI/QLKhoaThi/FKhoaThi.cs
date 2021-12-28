@@ -30,29 +30,9 @@ namespace TrungTamNgoaiNgu.GUI.QLKhoaThi
 
         private void FKhoaThi_Load(object sender, EventArgs e)
         {
-            // load data init
             getKhoaThis();
-
-            // style
-            styles();
         }
 
-        //
-        // styles
-        //
-        private void styles()
-        {
-            FMain.setVisibleColDataGridView(dataGridView1, new int[] { });
-            FMain.setSizeColDataGridView(dataGridView1, "");
-            FMain.setHeaderColDataGridView(dataGridView1,
-                new string[] { },
-                new string[] { }
-            );
-        }
-
-        //
-        // get data
-        //
         private bool getKhoaThis()
         {
             try

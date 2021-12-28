@@ -28,22 +28,11 @@ namespace TrungTamNgoaiNgu.GUI.QLNguoiDung
         private void FNguoiDung_Load(object sender, EventArgs e)
         {
             getNguoiDungs();
-            styles();
 
             // search
             textBoxSearch.GotFocus += new EventHandler(this.TextGotFocus);
             textBoxSearch.LostFocus += new EventHandler(this.TextLostFocus);
             getComboBoxSearch();
-        }
-
-        private void styles()
-        {
-            FMain.setVisibleColDataGridView(dataGridView1, new int[] { });
-            FMain.setSizeColDataGridView(dataGridView1, "");
-            FMain.setHeaderColDataGridView(dataGridView1,
-                new string[] { },
-                new string[] { }
-            );
         }
 
         private bool getNguoiDungs()
