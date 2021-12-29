@@ -60,9 +60,13 @@ namespace TrungTamNgoaiNgu.DAL
         }
         public bool Them(NguoiDung nguoiDung)
         {
-            db = new TrungTamNgoaiNguEntities();
-            db.NguoiDungs.Add(nguoiDung);
-            return db.SaveChanges() > 0;
+            try
+            {
+                db = new TrungTamNgoaiNguEntities();
+                db.NguoiDungs.Add(nguoiDung);
+                return db.SaveChanges() > 0;
+            }
+            catch { return false; }
         }
         public bool Sua(NguoiDung nguoiDung)
         {

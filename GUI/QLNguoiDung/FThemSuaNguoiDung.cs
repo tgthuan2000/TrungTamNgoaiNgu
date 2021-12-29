@@ -85,15 +85,21 @@ namespace TrungTamNgoaiNgu.GUI.QLNguoiDung
             DateTime ngaySinh = dateTimePicker2.Value;
             string noiSinh = textBox7.Text.Trim();
 
-            if (string.IsNullOrEmpty(noiCap) || string.IsNullOrEmpty(ho) || string.IsNullOrEmpty(ten) || string.IsNullOrEmpty(SDT) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(noiSinh))
+            if (string.IsNullOrEmpty(CCCD) || string.IsNullOrEmpty(noiCap) || string.IsNullOrEmpty(ho) || string.IsNullOrEmpty(ten) || string.IsNullOrEmpty(SDT) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(noiSinh))
             {
                 MessageBox.Show("Cần nhập đầy đủ thông tin tất cả các trường!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                if (string.IsNullOrEmpty(noiCap)) ActiveControl = textBox2;
+                if (string.IsNullOrEmpty(CCCD)) ActiveControl = textBox1;
+                else if (string.IsNullOrEmpty(noiCap)) ActiveControl = textBox2;
                 else if (string.IsNullOrEmpty(ho)) ActiveControl = textBox3;
                 else if (string.IsNullOrEmpty(ten)) ActiveControl = textBox4;
                 else if (string.IsNullOrEmpty(SDT)) ActiveControl = textBox5;
                 else if (string.IsNullOrEmpty(email)) ActiveControl = textBox6;
                 else ActiveControl = textBox7;
+            }
+            else if (CCCD.Length != 12 && CCCD.Length != 9)
+            {
+                MessageBox.Show("Căn cước công dân không hợp lệ!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ActiveControl = textBox1;
             }
             else if (SDT.Length != 10)
             {
